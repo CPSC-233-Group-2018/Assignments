@@ -1,4 +1,4 @@
-Requirements:
+.Requirements:
 
 Create a Java program that runs a guessing game.  The computer chooses a random number between 1 and 20.  The user continues providing guesses until they have guessed the number.  After each guess, let the user know if their guess was correct, too low or too high. The execution of your program may look as follows:
 
