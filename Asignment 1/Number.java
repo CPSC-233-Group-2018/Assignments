@@ -4,8 +4,9 @@ import java.util.InputMismatchException;
 
 public class Number {
 	/**
-	 * randomly generates a number and asks user to guess said number. player wins once they guess
-	 * the number correctly
+	 * randomly generates a number and asks user to guess said number.
+	 player wins once they guess the number correctly.
+	 Team 3: Lecture 6: Kieran, Rulan, Seth, William
 	 * @param args
 	 */
 	public static void main(String[] args) {
