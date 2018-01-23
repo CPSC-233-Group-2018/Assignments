@@ -9,14 +9,16 @@ public class Number {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+
 		Scanner keyboard = new Scanner(System.in); //creates keyboard for input
 		Random rand = new Random(); //generates random number between 1 and 20
 		int num = rand.nextInt(20) + 1; //variable for generated number
 		int playerGuess; //variable for player's guess
 		boolean correct = false; //boolean expression used to end while loop once guess is correct
 		System.out.println("I am thinking of a number between 1 and 20.");
+		System.out.println("The machine number is: " + num); //Prints the machine guess for easy testing
 		do {
-		    System.out.println("What is your guess: ");
+		    System.out.println("\nWhat is your guess: ");
 	    	try {
 	    	    playerGuess = keyboard.nextInt();  //initiates variable for guesses
 	      	    if (playerGuess > 20 || playerGuess < 1) { //if player's guess is out of range
