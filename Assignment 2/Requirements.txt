@@ -1,0 +1,27 @@
+Topic: instance variables and managing object references.
+
+Due date: Wednesday January 31 10:50am.  (No late submissions accepted)
+
+Requirements: Create a class called BankAccount that has
+
+Two instance variables: balance of type double and overdraftAmount of type double with initial value 100.0.
+Two methods: deposit and withdraw.  Each take a double as an argument and don't return anything.
+Getter method for balance instance variable. This should not have any arguments, and return the value of balance.
+Setter method for overdraftAmount instance variable. This should take an argument of type double, and set the value of overdraftAmount to the value of the argument. It should not return anything.
+All methods should ensure that the balance in a bankAccount never overdrafted more than allowed by instance variable overdraftAmount.
+
+A JUnit test is provided below for your code.  Note that this is only a partial test.  Your TAs will use a more detailed and thorough JUnit test.
+
+In addition to the code, provide a trace for the following code.  Your trace should clearly show, for each line of code, the creation of new objects and references to these objects.  Once the trace is completed, it should be clear which objects exists, what the balance is in each BankAccount object and which variable references which object.  Preferably: create a video that shows the trace.
+
+BankAccount b1 = new BankAccount();
+b1.deposit(100.0);
+
+BankAccount b2 = new BankAccount();
+b2.deposit(200.0);
+
+BankAccount b3 = b2;
+b3.withdraw(400.0);
+
+
+Submission:  Submit the file BankAccount.java that contains the code for the BankAccount class and a second file (or multiple files) for the trace to the D2L dropbox for this assignment.
