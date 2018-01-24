@@ -5,17 +5,18 @@ public class BankAccount{
    Team 3: Lecture 6: Kieran, Rulan, Seth, William
    */
 
+  public static double balance = 100.00;
+  
   public static void main(String[] args){
     /**
     This function creates all the initial attributes needed for the class
     */
-    double balance = 100.00
   }
-  public static double get_Balance() {
+  public static double get_balance() {
     /**
     Method that returns the balance of account
     */
-    return balance
+    return balance;
   }
 
   public static void widthdraw(){
