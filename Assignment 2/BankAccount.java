@@ -41,6 +41,14 @@ public class BankAccount{
     /**
     Method for withdrawing from the balance of the account,takes a double as an argument
     */
+    /*
+    public void withdraw(double amount) {
+      double maxWithdraw = balance + overdraftAmount;
+      if (balance > 0 && amount < maxWithdraw) {
+        balance -= amount;
+      }
+    }
+    */
     if (balance > 0) {
       balance -= amount;
     }
