@@ -71,7 +71,7 @@ public class BankAccount{
     }
   }
 
-  public static void setOverdraftAmount(double newAmount){
+  public void setOverdraftAmount(double newAmount){
     /**
     Method for setting the overdraft amount,takes a double as an argument
     */
