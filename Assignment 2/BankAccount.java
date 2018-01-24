@@ -18,7 +18,7 @@ public class BankAccount{
 
     //Start of test code
     System.out.println("The current balance is: " + get_balance());//Test code to print current balance
-    widthdraw(500);
+    withdraw(500);
     System.out.println("\nThe current balance is: " + get_balance() + "\nAnd it should be 89.88");//Test code to print current balance
     deposit(10.12);
     System.out.println("\nThe current balance is: " + get_balance() + "\nAnd it should be 100.0");//Test code to print current balance
@@ -36,10 +36,10 @@ public class BankAccount{
     return balance;
   }
 
-  public void widthdraw(double amount){
+  public void withdraw(double amount){
 
     /**
-    Method for widthdrawing from the balance of the account,takes a double as an argument
+    Method for withdrawing from the balance of the account,takes a double as an argument
     */
     if (balance > 0) {
       balance -= amount;
