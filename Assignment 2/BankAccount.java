@@ -12,6 +12,11 @@ public class BankAccount{
     This function creates all the initial attributes needed for the class
     */
     System.out.println("The current balance is: " + get_balance());//Test code to print current balance
+    widthdraw(10.12);
+    System.out.println("\nThe current balance is: " + get_balance() + "\nAnd it should be 89.88");//Test code to print current balance
+    deposit(10.12);
+    System.out.println("\nThe current balance is: " + get_balance() + "\nAnd it should be 100.0");//Test code to print current balance
+
   }
   public static double get_balance() {
     /**
@@ -20,16 +25,18 @@ public class BankAccount{
     return balance;
   }
 
-  public static void widthdraw(){
+  public static void widthdraw(double amount){
     /**
-    Method for widthdrawing from the balance of the account
+    Method for widthdrawing from the balance of the account,takes a double as an argument
     */
+    balance -= amount;
   }
 
-  public static void deposit(){
+  public static void deposit(double amount){
     /**
-    Method for depositing to the balance of the account
+    Method for depositing to the balance of the account,takes a double as an argument
     */
+    balance += amount;
   }
 
 }
