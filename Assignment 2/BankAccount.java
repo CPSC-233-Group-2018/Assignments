@@ -6,17 +6,24 @@ public class BankAccount{
    */
 
   public static double balance = 100.00;
+  public static double overdraftAmount = 100.00;
 
   public static void main(String[] args){
     /**
     This function creates all the initial attributes needed for the class
     */
+
+    //Test code
     System.out.println("The current balance is: " + get_balance());//Test code to print current balance
     widthdraw(10.12);
     System.out.println("\nThe current balance is: " + get_balance() + "\nAnd it should be 89.88");//Test code to print current balance
     deposit(10.12);
     System.out.println("\nThe current balance is: " + get_balance() + "\nAnd it should be 100.0");//Test code to print current balance
 
+    System.out.println("The current overdraftAmount is: " + overdraftAmount);
+    set_overdraftAmount(200.00);
+    System.out.println("The current overdraftAmount is: " + overdraftAmount);
+    //End of test code
   }
   public static double get_balance() {
     /**
@@ -39,4 +46,11 @@ public class BankAccount{
     balance += amount;
   }
 
-}
+  public static void set_overdraftAmount(double newAmount){
+    /**
+    Method for setting the overdraft amount,takes a double as an argument
+    */
+    overdraftAmount = newAmount;
+  }
+
+} //End of class
