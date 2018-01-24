@@ -2,11 +2,14 @@ public class BankAccount{
   /**
    * A class containing attributes about a bank account, as well as having
    methods for getting the balance, widthrawing and depositing to the balance
-   Team 3: Lecture 6: Kieran, Rulan, Seth, William
+   Team 3: Tutorial 6: Kieran, Rulan, Seth, William
    */
 
-  public static double balance = 100.00;
-  public static double overdraftAmount = 100.00;
+  public double balance = 100.00;
+  public double overdraftAmount = 100.00;
+  /**
+  Constructors for object class
+  */
 
   public static void main(String[] args){
     /**
@@ -24,18 +27,27 @@ public class BankAccount{
     set_overdraftAmount(200.00);
     System.out.println("\nThe current overdraftAmount is: " + overdraftAmount);
     //End of test code
+
   }
-  public static double get_balance() {
+  public double getBalance() {
     /**
     Method that returns the balance of account
     */
     return balance;
   }
 
-  public static void widthdraw(double amount){
+  public void widthdraw(double amount){
+
     /**
     Method for widthdrawing from the balance of the account,takes a double as an argument
     */
+    if (balance > 0) {
+      balance -= amount;
+    }
+  }
+
+  public void deposit(double amount) {
+
     do{
       double overdraftDifference = (0.00-overdraftAmount);
       double new_balance = balance - amount;
@@ -50,14 +62,16 @@ public class BankAccount{
     } while (bad_credit == true);
   }
 
-  public static void deposit(double amount){
+  public void deposit(double amount){
     /**
     Method for depositing to the balance of the account,takes a double as an argument
     */
-    balance += amount;
+    if (amount > 0) {
+      balance += amount;
+    }
   }
 
-  public static void set_overdraftAmount(double newAmount){
+  public static void setOverdraftAmount(double newAmount){
     /**
     Method for setting the overdraft amount,takes a double as an argument
     */
