@@ -6,11 +6,12 @@ public class BankAccount{
    */
 
   public static double balance = 100.00;
-  
+
   public static void main(String[] args){
     /**
     This function creates all the initial attributes needed for the class
     */
+    System.out.println("The current balance is: " + get_balance());//Test code to print current balance
   }
   public static double get_balance() {
     /**
@@ -30,4 +31,5 @@ public class BankAccount{
     Method for depositing to the balance of the account
     */
   }
+
 }
