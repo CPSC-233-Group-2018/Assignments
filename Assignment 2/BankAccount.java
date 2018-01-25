@@ -43,8 +43,8 @@ public class BankAccount{
     */
     /*
     public void withdraw(double amount) {
-      double maxWithdraw = balance + overdraftAmount;
-      if (balance > 0 && amount < maxWithdraw) {
+      double maxWithdraw = 0.00 - overdraftAmount;
+      if (balance > 0 && (balance - amount >= maxWithdraw)) {
         balance -= amount;
       }
     }
