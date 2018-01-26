@@ -10,38 +10,38 @@ public class BankAccount {
 	//class instance variables
 	double balance = 0;
 	double overdraftAmount= 100;
-	
+
 	void deposit(double input) {
 		/**
 		 * deposits inputed amount of money in account.
 		 * @param money to desposit
 		 */
 		if (input > 0) { //only positive values allowed
-			balance += input; 
+			balance += input;
 		} else System.out.println("You can't deposit a negative value!");
 	}
-	
+
 	void withdraw(double input) {
 		/**
 		 * withdraws the inputed amount if allowed based on balance and overdraft.
 		 * @param withdrawal amount
 		 */
-		if ((balance - input) > -1*(overdraftAmount)) { //i.e checks if resulting balance is within the overdraft
+		if ((balance - input) > -1*(overdraftAmount) && (input > 0)) { //i.e checks if resulting balance is within the overdraft and if input is non-negative
 			balance -= input;
 			System.out.println("withdrew "+input);
 		} else {
 			System.out.println("You don't have enough funds/overdraft to make this transaction");
-		}	
+		}
 	}
-	
-	double getBalance() {       
+
+	double getBalance() {
 		/**
 		 * returns the current balance of the account.
 		 * @return balance total
 		 */
 		return balance;
 	}
-	
+
 	void setOverdraftAmount(double input) {
 		/**
 		 * Sets the overdraft amount if the current balance is adequate.
@@ -49,7 +49,7 @@ public class BankAccount {
 		 */
 		if (balance > -(input)) { //does this check just in case you already owe money
 			overdraftAmount = input;
-		} else System.out.println("Your balance is too low for that overdraft amount."); 
+		} else System.out.println("Your balance is too low for that overdraft amount.");
 	}
-	
+
 } //end of class
