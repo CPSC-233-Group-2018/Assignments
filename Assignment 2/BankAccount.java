@@ -5,7 +5,7 @@ public class BankAccount{
    Team 3: Tutorial 6: Kieran, Rulan, Seth, William
    */
 
-  public double balance = 100.00;
+  public double balance = 0.00;
   public double overdraftAmount = 100.00;
   /**
   Constructors for object class
@@ -24,7 +24,7 @@ public class BankAccount{
     System.out.println("\nThe current balance is: " + get_balance() + "\nAnd it should be 100.0");//Test code to print current balance
 
     System.out.println("\nThe current overdraftAmount is: " + overdraftAmount);
-    set_overdraftAmount(200.00);
+    setOverdraftAmount(200.00);
     System.out.println("\nThe current overdraftAmount is: " + overdraftAmount);
     //End of test code
 
@@ -37,23 +37,16 @@ public class BankAccount{
   }
 
   public void withdraw(double amount){
-
     /**
     Method for withdrawing from the balance of the account,takes a double as an argument
     */
-    /*
-    public void withdraw(double amount) {
-      double maxWithdraw = 0.00 - overdraftAmount;
-      if (balance > 0 && (balance - amount >= maxWithdraw)) {
-        balance -= amount;
-      }
-    }
-    */
-    if (balance > 0) {
+    double maxWithdraw = 0.00 - overdraftAmount;
+    if (balance > 0 && (balance - amount >= maxWithdraw)) {
       balance -= amount;
     }
   }
 
+  /*
   public void deposit(double amount) {
 
     do{
@@ -69,7 +62,7 @@ public class BankAccount{
       }
     } while (bad_credit == true);
   }
-
+  */
   public void deposit(double amount){
     /**
     Method for depositing to the balance of the account,takes a double as an argument
