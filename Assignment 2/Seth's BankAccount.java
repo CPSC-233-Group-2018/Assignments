@@ -14,8 +14,9 @@ public class BankAccount {
 	void deposit(double input) {
 		/**
 		 * deposits inputed amount of money in account.
+		 * @param money to desposit
 		 */
-		if (input > 0) {
+		if (input > 0) { //only positive values allowed
 			balance += input; 
 		} else System.out.println("You can't deposit a negative value!");
 	}
@@ -23,8 +24,9 @@ public class BankAccount {
 	void withdraw(double input) {
 		/**
 		 * withdraws the inputed amount if allowed based on balance and overdraft.
+		 * @param withdrawal amount
 		 */
-		if ((balance - input) > -1*(overdraftAmount)) {
+		if ((balance - input) > -1*(overdraftAmount)) { //i.e checks if resulting balance is within the overdraft
 			balance -= input;
 			System.out.println("withdrew "+input);
 		} else {
@@ -35,15 +37,17 @@ public class BankAccount {
 	double getBalance() {       
 		/**
 		 * returns the current balance of the account.
+		 * @return balance total
 		 */
 		return balance;
 	}
 	
 	void setOverdraftAmount(double input) {
 		/**
-		 * Sets the overdraft amount if the current balance is adequate.  
+		 * Sets the overdraft amount if the current balance is adequate.
+		 * @param new overdraft amount
 		 */
-		if (balance > -(input)) {
+		if (balance > -(input)) { //does this check just in case you already owe money
 			overdraftAmount = input;
 		} else System.out.println("Your balance is too low for that overdraft amount."); 
 	}
