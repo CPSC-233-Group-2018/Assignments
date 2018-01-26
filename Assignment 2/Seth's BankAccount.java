@@ -15,7 +15,7 @@ public class BankAccount {
 		/**
 		 * deposits inputed amount of money in account.
 		 */
-		if (input > 0) {
+		if (input > 0) { //only positive values allowed
 			balance += input; 
 		} else System.out.println("You can't deposit a negative value!");
 	}
@@ -24,7 +24,7 @@ public class BankAccount {
 		/**
 		 * withdraws the inputed amount if allowed based on balance and overdraft.
 		 */
-		if ((balance - input) > -1*(overdraftAmount)) {
+		if ((balance - input) > -1*(overdraftAmount)) { //i.e checks if resulting balance is within the overdraft
 			balance -= input;
 			System.out.println("withdrew "+input);
 		} else {
@@ -43,7 +43,7 @@ public class BankAccount {
 		/**
 		 * Sets the overdraft amount if the current balance is adequate.  
 		 */
-		if (balance > -(input)) {
+		if (balance > -(input)) { //does this check just in case you already owe money
 			overdraftAmount = input;
 		} else System.out.println("Your balance is too low for that overdraft amount."); 
 	}
