@@ -8,10 +8,10 @@
  */
 public class BankAccount {
 	//class instance variables
-	double balance = 0;
-	double overdraftAmount= 100;
+	public double balance = 0;
+	public double overdraftAmount= 100;
 
-	void deposit(double input) {
+	public void deposit(double input) {
 		/**
 		 * deposits inputed amount of money in account.
 		 * @param money to desposit
@@ -21,7 +21,7 @@ public class BankAccount {
 		} else System.out.println("You can't deposit a negative value!");
 	}
 
-	void withdraw(double input) {
+	public void withdraw(double input) {
 		/**
 		 * withdraws the inputed amount if allowed based on balance and overdraft.
 		 * @param withdrawal amount
@@ -34,7 +34,7 @@ public class BankAccount {
 		}
 	}
 
-	double getBalance() {
+	public double getBalance() {
 		/**
 		 * returns the current balance of the account.
 		 * @return balance total
@@ -42,7 +42,7 @@ public class BankAccount {
 		return balance;
 	}
 
-	void setOverdraftAmount(double input) {
+	public void setOverdraftAmount(double input) {
 		/**
 		 * Sets the overdraft amount if the current balance is adequate.
 		 * @param new overdraft amount
