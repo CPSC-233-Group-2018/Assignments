@@ -28,9 +28,9 @@ public class BankAccount {
 		 */
 		if ((balance - input) > -1*(overdraftAmount) && (input > 0)) { //i.e checks if resulting balance is within the overdraft and if input is non-negative
 			balance -= input;
-			System.out.println("withdrew "+input);
+			System.out.println("withdrew " + input);
 		} else {
-			System.out.println("You don't have enough funds/overdraft to make this transaction");
+			System.out.println("You don't have enough funds/overdraft to make this transaction or withdraw a negative amount.");
 		}
 	}
 
@@ -47,9 +47,7 @@ public class BankAccount {
 		 * Sets the overdraft amount if the current balance is adequate.
 		 * @param new overdraft amount
 		 */
-		if (balance > -(input)) { //does this check just in case you already owe money
-			overdraftAmount = input;
-		} else System.out.println("Your balance is too low for that overdraft amount.");
+		overdraftAmount = input;
 	}
 
 } //end of class
