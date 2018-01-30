@@ -1,77 +1,53 @@
-public class BankAccount{
-  /**
-   * A class containing attributes about a bank account, as well as having
-   methods for getting the balance, widthrawing and depositing to the balance
-   Team 3: Tutorial 6: Kieran, Rulan, Seth, William
-   */
+//TEMPORARY PREVIEW ONLY, file name does not match also
 
-  public static double balance = 0.00;
-  public static double overdraftAmount = 100.00;
-  /**
-  Constructors for object class
-  */
+/**
+ * Seth Campbell, Jan 26, 2018
+ * -team assignment 2-
+ *  	A BankAccount class that allows accounts to be made and withdraws and deposits
+ *  	to be made. Also includes an overdraft feature.
+ */
+public class BankAccount {
+	//class instance variables
+	public double balance = 0;
+	public double overdraftAmount= 100;
 
-  public static void main(String[] args){
-    /**
-    This function calls and invokes all the methods
-    */
+	public void deposit(double input) {
+		/**
+		 * deposits inputed amount of money in account.
+		 * @param money to desposit
+		 */
+		if (input > 0) { //only positive values allowed
+			balance += input;
+		} else System.out.println("You can't deposit a negative value!");
+	}
 
-    //Start of test code
-    System.out.println("The current balance is: " + getBalance() );//Test code to print current balance
-    withdraw(500.00);
-    System.out.println("\nThe current balance is: " + getBalance() + "\nAnd it should be 89.88");//Test code to print current balance
-    deposit(10.12);
-    System.out.println("\nThe current balance is: " + getBalance() + "\nAnd it should be 100.0");//Test code to print current balance
+	public void withdraw(double input) {
+		/**
+		 * withdraws the inputed amount if allowed based on balance and overdraft.
+		 * @param withdrawal amount
+		 */
+		if ((balance - input) > -1*(overdraftAmount) && (input > 0)) { //i.e checks if resulting balance is within the overdraft and if input is non-negative
+			balance -= input;
+			System.out.println("withdrew " + input);
+		} else {
+			System.out.println("You don't have enough funds/overdraft to make this transaction or withdraw a negative amount.");
+		}
+	}
 
-    System.out.println("\nThe current overdraftAmount is: " + overdraftAmount);
-    setOverdraftAmount(200.00);
-    System.out.println("\nThe current overdraftAmount is: " + overdraftAmount);
-    //End of test code
+	public double getBalance() {
+		/**
+		 * returns the current balance of the account.
+		 * @return balance total
+		 */
+		return balance;
+	}
 
-  }
-  public static double getBalance() {
-    /**
-    Method that returns the balance of account
-    */
-    return balance;
-  }
+	public void setOverdraftAmount(double input) {
+		/**
+		 * Sets the overdraft amount if the current balance is adequate.
+		 * @param new overdraft amount
+		 */
+		overdraftAmount = input;
+	}
 
-  public static void withdraw(double amount){
-    /**
-    Method for withdrawing from the balance of the account,takes a double as an argument
-    */
-    double maxWithdraw = 0.00 - overdraftAmount;
-    if (balance > 0 && (balance - amount >= maxWithdraw)) {
-      balance -= amount;
-    }
-  }
-
-  public static void deposit(double amount) {
-    /**
-    Method for depositing to the balance of the account,takes a double as an argument
-    */
-    do{
-      double overdraftDifference = (0.00-overdraftAmount);
-      double new_balance = balance - amount;
-      boolean bad_credit = true;
-      System.out.println("\nThe overdraftDifference is: " + overdraftDifference);
-
-    if (new_balance < overdraftDifference){
-      bad_credit = true;
-      System.out.println("Your too poor try again");
-      amount = 10;
-      }
-    else{
-      bad_credit = false;
-    }
-    } while (bad_credit == true);
-  }
-
-  public static void setOverdraftAmount(double newAmount){
-    /**
-    Method for setting the overdraft amount,takes a double as an argument
-    */
-    overdraftAmount = newAmount;
-  }
-
-} //End of class
+} //end of class
