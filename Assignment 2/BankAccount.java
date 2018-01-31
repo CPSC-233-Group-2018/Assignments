@@ -1,7 +1,6 @@
-//TEMPORARY PREVIEW ONLY, file name does not match also
-
 /**
- * Seth Campbell, Jan 26, 2018
+ * Tutorial 6 Team 3:
+ * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
  * -team assignment 2-
  *  	A BankAccount class that allows accounts to be made and withdraws and deposits
  *  	to be made. Also includes an overdraft feature.
