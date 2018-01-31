@@ -1,0 +1,33 @@
+Topic: Encapsulation and object references
+
+Due Date: Wednesday February 7 9:50 AM (No late submissions accepted)
+
+Requirements:
+
+First, ensure that your BankAccount class from the previous week meets the specifications of Assignment 2. Consult an instructor during office hours, or a TA during CT if you need additional assistance.
+
+Create a Customer class with the following:
+
+Instance variables with appropriate getter and setter methods: name, which is a string, and a customerID, which is an integer.
+A toString() method which provides a well-formatted string representation of the instance variables in the Customer class.
+Appropriate constructors for the class: a default constructor which takes no arguments, a constructor which takes in a name and an ID number, as well as a copy constructor
+Add an instance of the Customer class to your BankAccount class, as an instance variable with a setter method.
+
+Update BankAccount with appropriate constructors, which can take in an object of the class Customer as a parameter.
+
+Both Customer and BankAccount should pass the tests provided here, and be able to successfully run the code below.
+
+Provide a trace for the following code:
+
+Customer c1 = new Customer("Alison Brown", 123); 
+BankAccount b1 = new BankAccount(c1, 100.00);
+
+Customer c2 = b1.getCustomer(); 
+c2.setName("Charles Green"); 
+System.out.println(c1); 
+System.out.println(c2);
+
+Customer c3 = c1; 
+c3.setName("Eva White"); 
+System.out.println(b1.getCustomer()); 
+System.out.println(c3);
