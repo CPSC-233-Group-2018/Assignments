@@ -4,6 +4,21 @@ public class Customer {
 	public String name; //instance variables
 	public int customerID;
 
+	Customer() {		//default constructor
+    name = "";
+    customerID = 0;
+  }
+
+	Customer(Customer c) {      //copy constructor
+    name = c.name;
+    customerID = c.customerID;
+  }
+
+	Customer(String cusName, int cusID) { //constructor that takes name and ID
+		name = cusName;
+		customerID = cusID;
+	}
+
 	public void setName(String input) { //method for name
 		name = input;
 	}
@@ -23,15 +38,6 @@ public class Customer {
 	public String toString() { //converts ID to string, not entirely sure about the return?
 		String strID = Integer.toString(customerID);
 		return strID;
-	}
-
-	public Customer() { //constructor with no arguments
-
-	}
-
-	Customer(String cusName, int cusID) { //constructor that takes name and ID
-		this.name = cusName;
-		this.customerID = cusID;
 	}
 
 	void information() { //prints out info from constructor
