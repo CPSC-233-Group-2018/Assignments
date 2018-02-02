@@ -60,4 +60,8 @@ public class BankAccount {
 		overdraftAmount = input;
 	}
 
+	public Customer getCustomer(){
+    return (customer);
+  }
+
 } //end of class
