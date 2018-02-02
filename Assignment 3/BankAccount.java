@@ -9,6 +9,17 @@ public class BankAccount {
 	//class instance variables
 	public double balance = 0;
 	public double overdraftAmount= 100;
+	public Customer customer;
+
+	BankAccount() {
+    balance = 0.00;
+    overdraftAmount = 100.00;
+  }
+
+  BankAccount(Customer c, double bal){
+    customer = c;
+    balance = bal;
+  }
 
 	public void deposit(double input) {
 		/**
