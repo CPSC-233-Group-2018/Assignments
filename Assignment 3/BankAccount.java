@@ -57,7 +57,9 @@ public class BankAccount {
 		 * Sets the overdraft amount if the current balance is adequate.
 		 * @param new overdraft amount
 		 */
-		overdraftAmount = input;
+		 if ((0-amount) < balance) {
+       overdraftAmount = amount;
+     }
 	}
 
 	public Customer getCustomer(){
