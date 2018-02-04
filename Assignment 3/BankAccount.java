@@ -17,7 +17,7 @@ public class BankAccount {
   }
 
   BankAccount(Customer c, double bal){
-    customer = c;
+    customer = new Customer (c);
     balance = bal;
   }
 
@@ -63,7 +63,7 @@ public class BankAccount {
 	}
 
 	public Customer getCustomer(){
-    return (customer);
+    return (new Customer(customer));
   }
 
 } //end of class
