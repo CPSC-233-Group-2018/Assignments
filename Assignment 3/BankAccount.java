@@ -63,7 +63,7 @@ public class BankAccount {
 	}
 
 	public Customer getCustomer(){
-    return (new Customer(customer));
+    return (customer);
   }
 
 } //end of class
