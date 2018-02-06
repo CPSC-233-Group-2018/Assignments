@@ -35,9 +35,9 @@ public class Customer {
 		return customerID;
 	}
 
-	public String toString() { //converts ID to string, not entirely sure about the return?
+	public String toString() { //converts Customer object into a string that can be printed.
 		String strID = Integer.toString(customerID);
-		return strID;
+		return "Customer name: " + name + "." + "\nCustomer ID: " + strID + "."
 	}
 
 	void information() { //prints out info from constructor
