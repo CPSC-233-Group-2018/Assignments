@@ -37,7 +37,7 @@ public class Customer {
 
 	public String toString() { //converts Customer object into a string that can be printed.
 		String strID = Integer.toString(customerID);
-		return "Customer name: " + name + "." + "\nCustomer ID: " + strID + "."
+		return "Customer name: " + name + "." + "\nCustomer ID: " + strID + ".";
 	}
 
 	void information() { //prints out info from constructor
