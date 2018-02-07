@@ -5,21 +5,23 @@
  *  	A BankAccount class that allows accounts to be made and withdraws and deposits
  *  	to be made. Also includes an overdraft feature and works with the Customer class.
  */
- 
+
 public class BankAccount {
 	//class instance variables
 	public double balance = 0;
 	public double overdraftAmount= 100;
 	public Customer customer = new Customer();
 
-	/** Default Constructor */
+
 	BankAccount() {
+    /** Default Constructor */
     balance = 0.00;
     overdraftAmount = 100.00;
 	}
 
-	/** Contructor with customer object and balance parameters */
+
 	BankAccount(Customer c, double bal){
+    /** Contructor with customer object and balance parameters */
     customer = c;
     balance = bal;
 	}

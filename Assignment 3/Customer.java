@@ -6,60 +6,68 @@
 */
 
 public class Customer {
-
-	public String name; //instance variables
+	//instance variables
+	public String name;
 	public int customerID;
 
-	/** Default constructor */
+
 	Customer() {
+		/** Default constructor */
     name = "";
     customerID = 0;
 	}
 
-	/** Copy constructor */
+
 	Customer(Customer c) {
+		/** Copy constructor */
     name = c.name;
     customerID = c.customerID;
 	}
 
-	/** Constructor taking name and ID */
+
 	Customer(String cusName, int cusID) {
+		/** Constructor taking name and ID */
 		name = cusName;
 		customerID = cusID;
 	}
 
-	/** sets name of customer
-	* @param name
-	*/
+
 	public void setName(String input) {
+		/** sets name of customer
+		* @param name
+		*/
 		name = input;
 	}
 
-	/** sets ID of customer
-	* @param ID number
-	*/
+
 	public void setID(int input) {
+		/** sets ID of customer
+		* @param ID number
+		*/
 		customerID = input;
 	}
 
-	/** retrieves name of customer
-	* @return name of customer
-	*/
+
 	public String getName() {
+		/** retrieves name of customer
+		* @return name of customer
+		*/
 		return name;
 	}
 
-	/** retrieves ID of customer
-	* @return ID of customer
-	*/
+
 	public int getID() {
+		/** retrieves ID of customer
+		* @return ID of customer
+		*/
 		return customerID;
 	}
 
-	/** Formats the name and ID of customer in a read-able way.
-	* @return formatted string of name and ID
-	*/
-	public String toString() { //converts Customer object into a string that can be printed.
+
+	public String toString() {
+		/** Formats the name and ID of customer in a read-able way.
+		* @return formatted string of name and ID
+		*/
 		String strID = Integer.toString(customerID);
 		return "Customer name: " + name + "." + "\nCustomer ID: " + strID + ".";
 	}
