@@ -1,9 +1,9 @@
 /**
  * Tutorial 6 Team 3:
  * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
- * -team assignment 2-
+ * -team assignment 3, Feb.6,2018-
  *  	A BankAccount class that allows accounts to be made and withdraws and deposits
- *  	to be made. Also includes an overdraft feature.
+ *  	to be made. Also includes an overdraft feature and works with the Customer class.
  */
 public class BankAccount {
 	//class instance variables
@@ -11,15 +11,17 @@ public class BankAccount {
 	public double overdraftAmount= 100;
 	public Customer customer = new Customer();
 
+	/** Default Constructor */
 	BankAccount() {
     balance = 0.00;
     overdraftAmount = 100.00;
-  }
+	}
 
-  BankAccount(Customer c, double bal){
+	/** Contructor with customer object and balance parameters */
+	BankAccount(Customer c, double bal){
     customer = c;
     balance = bal;
-  }
+	}
 
 	public void deposit(double input) {
 		/**
