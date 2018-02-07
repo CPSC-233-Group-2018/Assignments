@@ -7,8 +7,8 @@
 
 public class Customer {
 	//instance variables
-	public String name;
-	public int customerID;
+	private String name;
+	private int customerID;
 
 
 	Customer() {
