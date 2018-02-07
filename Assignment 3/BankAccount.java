@@ -8,9 +8,9 @@
 
 public class BankAccount {
 	//class instance variables
-	public double balance = 0;
-	public double overdraftAmount= 100;
-	public Customer customer = new Customer();
+	private double balance = 0;
+	private double overdraftAmount= 100;
+	private Customer customer = new Customer();
 
 
 	BankAccount() {
