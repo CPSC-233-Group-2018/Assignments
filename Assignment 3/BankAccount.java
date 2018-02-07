@@ -5,6 +5,7 @@
  *  	A BankAccount class that allows accounts to be made and withdraws and deposits
  *  	to be made. Also includes an overdraft feature and works with the Customer class.
  */
+ 
 public class BankAccount {
 	//class instance variables
 	public double balance = 0;

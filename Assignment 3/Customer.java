@@ -2,42 +2,43 @@
  * Tutorial 6 Team 3:
  * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
  * -team assignment 3, Feb.6,2018-
- *  	A customer class that interacts with the bankAccount class. 
+ *  	A customer class that interacts with the bankAccount class.
 */
+
 public class Customer {
 
 	public String name; //instance variables
 	public int customerID;
 
 	/** Default constructor */
-	Customer() {		
+	Customer() {
     name = "";
     customerID = 0;
 	}
-	
+
 	/** Copy constructor */
-	Customer(Customer c) {     
+	Customer(Customer c) {
     name = c.name;
     customerID = c.customerID;
 	}
-	
+
 	/** Constructor taking name and ID */
-	Customer(String cusName, int cusID) { 
+	Customer(String cusName, int cusID) {
 		name = cusName;
 		customerID = cusID;
 	}
 
 	/** sets name of customer
-	* @param name 
+	* @param name
 	*/
-	public void setName(String input) { 
+	public void setName(String input) {
 		name = input;
 	}
 
 	/** sets ID of customer
-	* @param ID number 
+	* @param ID number
 	*/
-	public void setID(int input) { 
+	public void setID(int input) {
 		customerID = input;
 	}
 
