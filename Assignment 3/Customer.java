@@ -40,8 +40,4 @@ public class Customer {
 		return "Customer name: " + name + "." + "\nCustomer ID: " + strID + ".";
 	}
 
-	void information() { //prints out info from constructor
-		System.out.println("Customer name: " + name + "." + "\nCustomer ID: " + customerID + ".");
-	}
-
 }
