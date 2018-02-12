@@ -44,7 +44,7 @@ public class BankAccount {
 		 * withdraws the inputed amount if allowed based on balance and overdraft.
 		 * @param withdrawal amount
 		 */
-		if ((balance - input) > -1*(overdraftAmount) && (input > 0)) { //i.e checks if resulting balance is within the overdraft and if input is non-negative
+		if ((balance - input) >= -1*(overdraftAmount) && (input > 0)) { //i.e checks if resulting balance is within the overdraft and if input is non-negative
 			balance -= input;
 			System.out.println("withdrew " + input);
 		} else {

@@ -1,7 +1,7 @@
 
 public class SavingsAccount extends BankAccount {
 
-  public double annualInterestRate;
+  private double annualInterestRate = 0;
 
   public SavingsAccount() {
 	  annualInterestRate = 0;
@@ -13,16 +13,9 @@ public class SavingsAccount extends BankAccount {
 
   public SavingsAccount(double initialBalance, double initialInterest) {
 	  super(initialBalance);
-	  annualInterestRate = initialInterest;
-  }
-
-  public void setBalance(double input) {
-	  if (input > 0) {
-		  super.balance = input;
-	  }
-	  else {
-		  System.out.println("You can't have a negative balance!");
-	  }
+    if (initialInterest > 0) {
+      annualInterestRate = initialInterest;
+    }
   }
 
   public void setAnnualInterestRate(double input) {
@@ -34,20 +27,15 @@ public class SavingsAccount extends BankAccount {
     }
   }
 
-  public double getInterestRate() { //not sure what the difference is between this and the method below. both are used in the test though.
-	  return annualInterestRate;
-  }
-
   public double getAnnualInterestRate() {
     return annualInterestRate;
   }
 
-  public double calculateMonthlyInterest() { //not done, calculates monthly interest from annual
-	  return (annualInterestRate/12);
-  }
-
-  public void depositMonthlyInterest() { //also not done
-    balance += annualInterestRate;
+  public void depositMonthlyInterest() {
+    if (getBalance() > 0) {
+      double monthInterest = annualInterestRate/100*getBalance()/12;
+      deposit(monthInterest);
+    }
   }
 
 }
