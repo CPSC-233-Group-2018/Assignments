@@ -1,7 +1,7 @@
 /**
  * Tutorial 6 Team 3:
  * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
- * -team assignment 3, Feb.6,2018-
+ * -team assignment 4, Feb.13,2018-
  *  	A customer class that interacts with the bankAccount class.
 */
 
@@ -10,64 +10,66 @@ public class Customer {
 	private String name;
 	private int customerID;
 
-
+	/**
+		* Default constructor for the class
+		*/
 	Customer() {
-		/** Default constructor */
     name = "";
     customerID = 0;
 	}
 
-
+	/**
+		* Copy constructor that takes in a Customer object and sets the name and id to that customer.
+		* @param c Customer object
+		*/
 	Customer(Customer c) {
-		/** Copy constructor */
     name = c.name;
     customerID = c.customerID;
 	}
 
-
+	/**
+		* Constructor that takes in a string and integer and sets them as the name and customerID
+		* @param cusName customer's name
+		* @param cusID customer's ID
+		*/
 	Customer(String cusName, int cusID) {
-		/** Constructor taking name and ID */
 		name = cusName;
 		customerID = cusID;
 	}
 
-
-	public void setName(String input) {
-		/** sets name of customer
-		* @param name
+	/** setName() takes in a string and sets it to name
+		* @param input new customer name
 		*/
+	public void setName(String input) {
 		name = input;
 	}
 
-
-	public void setID(int input) {
-		/** sets ID of customer
-		* @param ID number
+	/** setID() takes in an int and sets it to customerID
+		* @param input new customer id
 		*/
+	public void setID(int input) {
 		customerID = input;
 	}
 
-
-	public String getName() {
-		/** retrieves name of customer
-		* @return name of customer
+	/** getName() returns the name
+		* @return name
 		*/
+	public String getName() {
 		return name;
 	}
 
-
-	public int getID() {
-		/** retrieves ID of customer
-		* @return ID of customer
+	/** getID() returns the customerID
+		* @return customerID
 		*/
+	public int getID() {
 		return customerID;
 	}
 
-
-	public String toString() {
-		/** Formats the name and ID of customer in a read-able way.
-		* @return formatted string of name and ID
+	/** toString() formats the name and ID of customer in a read-able way.
+		* It converts the customerID to a string and stores it in strID.
+		* @return name and strID
 		*/
+	public String toString() {
 		String strID = Integer.toString(customerID);
 		return "Customer name: " + name + "." + "\nCustomer ID: " + strID + ".";
 	}
