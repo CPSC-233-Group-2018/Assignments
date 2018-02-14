@@ -12,38 +12,48 @@ public class BankAccount {
 	private double overdraftAmount= 100;
 	private Customer customer = new Customer();
 
-
+	/**
+		* Default constructor for the class
+		*/
 	BankAccount() {
-    /** Default Constructor */
     balance = 0.00;
     overdraftAmount = 100.00;
 	}
 
+	/**
+		* Constructor that takes in an initial balance
+		* @param initialBalance initial amount of balance
+		*/
 	BankAccount(double initialBalance) {
 		balance = initialBalance;
 	}
 
+  /** Contructor that takes in a Customer object and a balance
+		* @param c Customer object
+		* @param bal initial amount of balance
+		*/
 	BankAccount(Customer c, double bal){
-    /** Contructor with customer object and balance parameters */
     customer = c;
     balance = bal;
 	}
 
+	/**
+	 * deposit() takes in a double and adds the input to balance.
+	 * Balance does not change if the input is a negative amount.
+	 * @param input amount to deposit
+	 */
 	public void deposit(double input) {
-		/**
-		 * deposits inputed amount of money in account.
-		 * @param money to desposit
-		 */
 		if (input > 0) { //only positive values allowed
 			balance += input;
 		} else System.out.println("You can't deposit a negative value!");
 	}
 
+	/**
+	 * withdraw() takes in a double and subtracts it from the balance.
+	 * It will only change when the input is positive and if the input does not exceed the overdraft limit.
+	 * @param input amount to subtract
+	 */
 	public void withdraw(double input) {
-		/**
-		 * withdraws the inputed amount if allowed based on balance and overdraft.
-		 * @param withdrawal amount
-		 */
 		if ((balance - input) >= -1*(overdraftAmount) && (input > 0)) { //i.e checks if resulting balance is within the overdraft and if input is non-negative
 			balance -= input;
 			System.out.println("withdrew " + input);
@@ -52,26 +62,32 @@ public class BankAccount {
 		}
 	}
 
+	/**
+	 * getBalance() returns the balance
+	 * @return balance
+	 */
 	public double getBalance() {
-		/**
-		 * returns the current balance of the account.
-		 * @return balance total
-		 */
 		return balance;
 	}
 
+	/**
+	 * setOverdraftAmount() takes in a double and changes the current overdraftAmount to the input.
+	 * It only changes if the new amount will be lower than the current balance.
+	 * @param input new overdraft amount
+	 */
 	public void setOverdraftAmount(double input) {
-		/**
-		 * Sets the overdraft amount if the current balance is adequate.
-		 * @param new overdraft amount
-		 */
 		 if ((0-input) <= balance) {
        overdraftAmount = input;
      }
 	}
 
+	/**
+		* getCustomer() returns the customer
+		* @return customer
+		*/
 	public Customer getCustomer(){
     return (customer);
   }
 
-} //end of class
+}
+//end of class
