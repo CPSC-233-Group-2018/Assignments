@@ -11,14 +11,14 @@ public class SavingsAccount extends BankAccount {
   private double annualInterestRate = 0;
 
   /**
-    * Default constructor that takes no arguments
+    * Default constructor that takes no arguments.
     */
   SavingsAccount() {
 	  annualInterestRate = 0;
   }
 
   /**
-    * Constructor that takes in a Customer object and a double and calls the superclass with the same parameters
+    * Constructor that takes in a Customer object and a double and calls the superclass with the same parameters.
     * @param cust Customer object
     * @param balance initial amount of balance
     */
@@ -27,32 +27,45 @@ public class SavingsAccount extends BankAccount {
   }
 
   /**
-    * Constructor that takes in two doubles and calls the superclass 
+    * Constructor that takes in two doubles and calls the superclass with one of the parameters.
+    * @param initialBalance initial amount of balance
+    * @param intitialInterest initial amount of interest
     */
   SavingsAccount(double initialBalance, double initialInterest) {
 	  super(initialBalance);
-    if (initialInterest > 0) {
-      annualInterestRate = initialInterest;
+    if (initialInterest > 0) {                //If the initialInterest is positive
+      annualInterestRate = initialInterest;   //Set it to the annualInterestRate variable
     }
   }
 
+  /**
+    * setAnnualInterestRate() takes in a double and sets the annualInterestRate to the new input.
+    * @param input new interest rate
+    */
   public void setAnnualInterestRate(double input) {
-    if (input > 0) {
-      annualInterestRate = input;
+    if (input > 0) {                  //Check if the input is positive
+      annualInterestRate = input;     //Set the annualInterestRate to the input
     }
-    else {
-      System.out.println("You can't have a negative interest rate!");
+    else {          //If input is not positive
+      System.out.println("You can't have a negative interest rate!"); //Print error message
     }
   }
 
+  /**
+    * getAnnualInterestRate() returns the annualInterestRate.
+    * @return annualInterestRate
+    */
   public double getAnnualInterestRate() {
     return annualInterestRate;
   }
 
+  /**
+    * depositMonthlyInterest() calculates the monthly interest then deposits the amount into the account.
+    */
   public void depositMonthlyInterest() {
-    if (getBalance() > 0) {
+    if (getBalance() > 0) {       //Checks if the balance is positive
       double monthInterest = annualInterestRate/100*getBalance()/12;
-      deposit(monthInterest);
+      deposit(monthInterest);     //Calls the deposit function with the monthInterest variable
     }
   }
 
