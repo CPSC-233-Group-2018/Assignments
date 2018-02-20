@@ -13,7 +13,7 @@ public class BankAccount {
 	private Customer customer = new Customer();
 
 	/**
-		* Default constructor that takes no arguments
+		* Default constructor that takes no arguments.
 		*/
 	BankAccount() {
     balance = 0.00;
@@ -21,14 +21,14 @@ public class BankAccount {
 	}
 
 	/**
-		* Constructor that takes in an initial balance
+		* Constructor that takes in an initial balance.
 		* @param initialBalance initial amount of balance
 		*/
 	BankAccount(double initialBalance) {
 		balance = initialBalance;
 	}
 
-  /** Contructor that takes in a Customer object and a balance
+  /** Contructor that takes in a Customer object and a balance.
 		* @param c Customer object
 		* @param bal initial amount of balance
 		*/
@@ -63,7 +63,7 @@ public class BankAccount {
 	}
 
 	/**
-	 * getBalance() returns the balance
+	 * getBalance() returns the balance.
 	 * @return balance
 	 */
 	public double getBalance() {
@@ -82,12 +82,20 @@ public class BankAccount {
 	}
 
 	/**
-		* getCustomer() returns the customer
+		* getCustomer() returns the customer.
 		* @return customer new object
 		*/
 	public Customer getCustomer(){
     return (new Customer(customer));
   }
+
+	/**
+		* setCustomer() takes in a customer object and sets the instance variable to that customer.
+		* @param c customer object to set
+		*/
+	public void setCustomer(Customer c) {
+		customer = new Customer(c);
+	}
 
 }
 //end of class
