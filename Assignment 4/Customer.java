@@ -1,8 +1,8 @@
 /**
  * Tutorial 6 Team 3:
  * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
- * -team assignment 4, Feb.13,2018-
- *  	A customer class that interacts with the bankAccount class.
+ * -team assignment 4, Feb.19,2018-
+ *  	A customer class that interacts with the BankAccount class.
 */
 
 public class Customer {

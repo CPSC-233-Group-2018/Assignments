@@ -1,8 +1,8 @@
 /**
  * Tutorial 6 Team 3:
  * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
- * -team assignment 4, Feb.13,2018-
- *  	A BankAccount class that allows accounts to be made and withdraws and deposits
+ * -team assignment 4, Feb.19,2018-
+ *  	A BankAccount class that allows accounts to be created and withdraws and deposits
  *  	to be made. Also includes an overdraft feature.
  */
 
@@ -43,7 +43,7 @@ public class BankAccount {
 	 * @param input amount to deposit
 	 */
 	public void deposit(double input) {
-		if (input > 0) { //only positive values allowed
+		if (input > 0 && Double.isInfinite(input) == false) { //only positive values allowed excluding infinity
 			balance += input;
 		} else System.out.println("You can't deposit a negative value!");
 	}
@@ -83,10 +83,10 @@ public class BankAccount {
 
 	/**
 		* getCustomer() returns the customer
-		* @return customer
+		* @return customer new object
 		*/
 	public Customer getCustomer(){
-    return (customer);
+    return (new Customer(customer));
   }
 
 }
