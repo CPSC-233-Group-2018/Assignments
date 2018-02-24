@@ -8,8 +8,6 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.text.*;
 
-
-
 public class BankApplication extends Application {
   private Customer customer = new Customer("Charles Brown", 123456);
   private SavingsAccount savings = new SavingsAccount(customer, 150.00);
@@ -32,32 +30,29 @@ public class BankApplication extends Application {
     Button executeButton = new Button("Execute");
     vbox.getChildren().add(executeButton);
     vbox.getChildren().add(balanceLabel);
-    try {
-      executeButton.setOnAction(new EventHandler<ActionEvent>() {
-
+    executeButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
-          double depositAmt = Double.parseDouble(depositTextField.getText());
-          double withdrawAmt = Double.parseDouble(withdrawTextField.getText());
-          if (depositAmt >= 0 && Double.isInfinite(depositAmt) == false) {
-            savings.deposit(depositAmt);
+          try {
+            double depositAmt = Double.parseDouble(depositTextField.getText());
+            double withdrawAmt = Double.parseDouble(withdrawTextField.getText());
+            if (depositAmt >= 0 && Double.isInfinite(depositAmt) == false) {
+              savings.deposit(depositAmt);
+            }
+            if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false) {
+              savings.withdraw(withdrawAmt);
+            }
+            depositTextField.setText("Amt to deposit");
+            withdrawTextField.setText("Amt to withdraw");
+            balanceLabel.setText("Current balance: " + formatter.format(savings.getBalance()));
+          } catch (NumberFormatException e) {
+            depositTextField.setText("Amt to deposit");
+            withdrawTextField.setText("Amt to withdraw");
+            System.out.println("Error with number format. ");
+            System.err.println("NumberFormatException: " + e.getMessage());
           }
-          if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false) {
-            savings.withdraw(withdrawAmt);
-          }
-          depositTextField.setText("Amt to deposit");
-          withdrawTextField.setText("Amt to withdraw");
-          balanceLabel.setText("Current balance: " + formatter.format(savings.getBalance()));
         }
       });
-    } catch (NumberFormatException e) {
-      depositTextField.setText("Amt to deposit");
-      withdrawTextField.setText("Amt to withdraw");
-      System.out.println("Error with number format. ");
-      System.err.println("NumberFormatException: " + e.getMessage());
-    }
-
-
 
     Scene scene = new Scene(vbox, 400, 300);
     primaryStage.setTitle("Bank application");
