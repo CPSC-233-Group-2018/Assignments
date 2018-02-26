@@ -14,11 +14,11 @@ public class BankApplication extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    NumberFormat formatter = NumberFormat.getCurrencyInstance();
+    NumberFormat currency = NumberFormat.getCurrencyInstance();
     VBox vbox = new VBox();
     Label customerNameLabel = new Label("Customer name: " + customer.getName());
     Label customerIDLabel = new Label("Account ID: " + customer.getID());
-    Label balanceLabel = new Label("Current balance: " + formatter.format(savings.getBalance()));
+    Label balanceLabel = new Label("Current balance: " + currency.format(savings.getBalance()));
     vbox.getChildren().add(customerNameLabel);
     vbox.getChildren().add(customerIDLabel);
     HBox hbox = new HBox();
@@ -44,7 +44,7 @@ public class BankApplication extends Application {
             }
             depositTextField.setText("Amt to deposit");
             withdrawTextField.setText("Amt to withdraw");
-            balanceLabel.setText("Current balance: " + formatter.format(savings.getBalance()));
+            balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));
           } catch (NumberFormatException e) {
             depositTextField.setText("Amt to deposit");
             withdrawTextField.setText("Amt to withdraw");
