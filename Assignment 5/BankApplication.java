@@ -35,18 +35,23 @@ public class BankApplication extends Application {
         public void handle(ActionEvent event) {
           try {
             double depositAmt = Double.parseDouble(depositTextField.getText());
-            double withdrawAmt = Double.parseDouble(withdrawTextField.getText());
             if (depositAmt >= 0 && Double.isInfinite(depositAmt) == false) {
               savings.deposit(depositAmt);
             }
-            if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false) {
-              savings.withdraw(withdrawAmt);
-            }
             depositTextField.setText("Amt to deposit");
-            withdrawTextField.setText("Amt to withdraw");
             balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));
           } catch (NumberFormatException e) {
             depositTextField.setText("Amt to deposit");
+            System.out.println("Error with number format. ");
+            System.err.println("NumberFormatException: " + e.getMessage());
+          } try {
+            double withdrawAmt = Double.parseDouble(withdrawTextField.getText());
+            if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false) {
+              savings.withdraw(withdrawAmt);
+            }
+            withdrawTextField.setText("Amt to withdraw");
+            balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));
+          } catch (NumberFormatException e) {
             withdrawTextField.setText("Amt to withdraw");
             System.out.println("Error with number format. ");
             System.err.println("NumberFormatException: " + e.getMessage());
