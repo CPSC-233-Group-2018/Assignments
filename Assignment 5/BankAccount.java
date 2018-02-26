@@ -45,6 +45,7 @@ public class BankAccount {
 	public void deposit(double input) {
 		if (input >= 0 && Double.isInfinite(input) == false) { //only positive values allowed excluding infinity
 			balance += input;
+			System.out.println("deposited " + input);
 		} else System.out.println("You can't deposit a negative value!");
 	}
 
