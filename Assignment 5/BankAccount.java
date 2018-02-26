@@ -43,7 +43,7 @@ public class BankAccount {
 	 * @param input amount to deposit
 	 */
 	public void deposit(double input) {
-		if (input > 0 && Double.isInfinite(input) == false) { //only positive values allowed excluding infinity
+		if (input >= 0 && Double.isInfinite(input) == false) { //only positive values allowed excluding infinity
 			balance += input;
 		} else System.out.println("You can't deposit a negative value!");
 	}
@@ -54,7 +54,7 @@ public class BankAccount {
 	 * @param input amount to subtract
 	 */
 	public void withdraw(double input) {
-		if ((balance - input) >= -1*(overdraftAmount) && (input > 0)) { //i.e checks if resulting balance is within the overdraft and if input is non-negative
+		if ((balance - input) >= -1*(overdraftAmount) && (input >= 0)) { //i.e checks if resulting balance is within the overdraft and if input is non-negative
 			balance -= input;
 			System.out.println("withdrew " + input);
 		} else {
