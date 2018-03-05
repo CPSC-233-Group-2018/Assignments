@@ -1,7 +1,7 @@
 /**
  * Tutorial 6 Team 3:
  * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
- * -team assignment 5, Feb.19,2018-
+ * -team assignment 6, Mar.4,2018-
  *  	A BankAccount class that allows accounts to be created and withdraws and deposits
  *  	to be made. Also includes an overdraft feature.
  */
@@ -9,7 +9,6 @@
 public class BankAccount {
 	//class instance variables
 	private double balance = 0;
-	private double overdraftAmount= 100;
 	private Customer customer = new Customer();
 
 	/**
@@ -17,7 +16,6 @@ public class BankAccount {
 		*/
 	BankAccount() {
     balance = 0.00;
-    overdraftAmount = 100.00;
 	}
 
 	/**
@@ -55,7 +53,8 @@ public class BankAccount {
 	 * @param input amount to subtract
 	 */
 	public void withdraw(double input) {
-		if ((balance - input) >= -1*(overdraftAmount) && (input >= 0)) { //i.e checks if resulting balance is within the overdraft and if input is non-negative
+		//ChequingAccount c = new ChequingAccount();
+		if ((balance - input >= 0) && (input >= 0) && (balance >= input)) { //i.e checks if balance has enough money and if input is non-negative
 			balance -= input;
 			System.out.println("withdrew " + input);
 		} else {
@@ -72,14 +71,19 @@ public class BankAccount {
 	}
 
 	/**
-	 * setOverdraftAmount() takes in a double and changes the current overdraftAmount to the input.
-	 * It only changes if the new amount will be lower than the current balance.
-	 * @param input new overdraft amount
-	 */
-	public void setOverdraftAmount(double input) {
-		 if ((0-input) <= balance) {
-       overdraftAmount = input;
-     }
+		* setBalance() takes in a double and sets the instance variable to that amount.
+		* @param amt balance to set
+		*/
+	protected void setBalance(double amt) {
+		balance = amt;
+	}
+
+	public void transfer(double amt, BankAccount toAcc) {
+		double bal = getBalance();
+		withdraw(amt);
+		if (bal != getBalance()) {
+			toAcc.deposit(amt);
+		}
 	}
 
 	/**
