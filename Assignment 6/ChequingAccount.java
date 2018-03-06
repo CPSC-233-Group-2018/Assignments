@@ -38,18 +38,18 @@
   }
 
   /**
-    * setTransactionFee() takes in a double and sets it to overdraftFee.
+    * setOverdraftFee() takes in a double and sets it to overdraftFee.
     * @param fee
     */
-  public void setTransactionFee(double fee) {
+  public void setOverdraftFee(double fee) {
     overdraftFee = fee;
   }
 
   /**
-    * getTransactionAmount() returns the overdraftAmount as a double.
+    * getOverdraftAmount() returns the overdraftAmount as a double.
     * @return overdraftAmount
     */
-  public double getTransactionAmount() {
+  public double getOverdraftAmount() {
     return overdraftAmount;
   }
 
