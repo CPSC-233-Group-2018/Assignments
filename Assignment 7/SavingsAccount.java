@@ -69,11 +69,4 @@ public class SavingsAccount extends BankAccount {
     }
   }
 
-  public double getMonthlyFeesAndInterest() {
-    if (super.getBalance() < 1000) {
-    }
-  }
-
-  
-
 }

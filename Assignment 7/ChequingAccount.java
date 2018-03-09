@@ -78,14 +78,4 @@
 
     }
   }
-
-  public double getMonthlyFeesAndInterest() {
-    if (super.getBalance() >= 0) {
-      return 0;
-    }
-    else {
-      return (super.getBalance() * 0.2);
-    }
-  }
-
 }

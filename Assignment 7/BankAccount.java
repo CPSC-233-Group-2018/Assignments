@@ -6,7 +6,7 @@
  *  	to be made. Also includes an overdraft feature.
  */
 
-public abstract class BankAccount { //abstract class
+public class BankAccount {
 	//class instance variables
 	private double balance = 0;
 	private Customer customer = new Customer();
@@ -100,12 +100,6 @@ public abstract class BankAccount { //abstract class
 		*/
 	public void setCustomer(Customer c) {
 		customer = new Customer(c);
-	}
-
-	protected abstract double getMonthlyFeesAndInterest();
-
-	public void monthEndUpdate() {
-
 	}
 
 }
