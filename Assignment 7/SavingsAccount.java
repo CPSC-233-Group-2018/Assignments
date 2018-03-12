@@ -1,7 +1,7 @@
 /**
  * Tutorial 6 Team 3:
  * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
- * -team assignment 5, Feb.19,2018-
+ * -team assignment 7, Mar.12,2018-
  *  	A SavingsAccount class that is a subclass of BankAccount that creates
  *    and calculates interest based on the annual interest rate specified.
  */
@@ -69,4 +69,16 @@ public class SavingsAccount extends BankAccount {
     }
   }
 
+  /**
+    * getMonthlyFeesAndInterest() checks if the balance is below 1000, then divide the interest rate by 12 and subtract 5.
+    * Or return balance multiplied by interest rate divided by 1200.
+    * This method overrides the abstract method in BankAccount.
+    */
+  @Override
+  public double getMonthlyFeesAndInterest() {
+    if (super.getBalance() < 1000) {
+      return annualInterestRate/12-5;
+    }
+    return super.getBalance()*annualInterestRate/1200;
+  }
 }

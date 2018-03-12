@@ -1,7 +1,7 @@
 /**
  * Tutorial 6 Team 3:
  * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
- * -team assignment 6, Mar.4,2018-
+ * -team assignment 7, Mar.12,2018-
  *  	A BankAccount class that allows accounts to be created and withdraws and deposits
  *  	to be made. Also includes an overdraft feature.
  */
@@ -77,5 +77,17 @@
       super.setBalance(newBalance);               //Call the setBalance method from superclass with newBalance as parameter
 
     }
+  }
+
+  /**
+    * getMonthlyFeesAndInterest() checks if the balance is positive, return 0. Or return the 20% of the current balance.
+    * This method overrides the abstract method in BankAccount.
+    */
+  @Override
+  public double getMonthlyFeesAndInterest() {
+      if (super.getBalance() >= 0) {
+        return 0;
+      }
+      return super.getBalance()*0.2;
   }
 }

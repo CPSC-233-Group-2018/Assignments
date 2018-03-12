@@ -1,12 +1,12 @@
 /**
  * Tutorial 6 Team 3:
  * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
- * -team assignment 6, Mar.4,2018-
+ * -team assignment 7, Mar.12,2018-
  *  	A BankAccount class that allows accounts to be created and withdraws and deposits
  *  	to be made. Also includes an overdraft feature.
  */
 
-public class BankAccount {
+public abstract class BankAccount {
 	//class instance variables
 	private double balance = 0;
 	private Customer customer = new Customer();
@@ -54,7 +54,7 @@ public class BankAccount {
 	 */
 	public void withdraw(double input) {
 		//ChequingAccount c = new ChequingAccount();
-		if ((balance - input >= 0) && (input >= 0) && (balance >= input)) { //i.e checks if balance has enough money and if input is non-negative
+		if ((balance - input >= 0) && (input >= 0)) { //i.e checks if balance has enough money and if input is non-negative
 			balance -= input;
 			System.out.println("withdrew " + input);
 		} else {
@@ -101,6 +101,18 @@ public class BankAccount {
 	public void setCustomer(Customer c) {
 		customer = new Customer(c);
 	}
+
+	/**
+		* monthEndUpdate() adds the value returned from getMonthlyFeesAndInterest() to the balance.
+		*/
+	public void monthEndUpdate() {
+		balance += getMonthlyFeesAndInterest();
+	}
+
+	/**
+		* getMonthlyFeesAndInterest() is abstract and protected, so child classes can override method.
+		*/
+	protected abstract double getMonthlyFeesAndInterest();
 
 }
 //end of class
