@@ -75,7 +75,7 @@ public class SavingsAccount extends BankAccount {
     * This method overrides the abstract method in BankAccount.
     */
   @Override
-  public double getMonthlyFeesAndInterest() {
+  protected double getMonthlyFeesAndInterest() {
     if (super.getBalance() < 1000) {
       return annualInterestRate/12-5;
     }

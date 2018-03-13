@@ -84,7 +84,7 @@
     * This method overrides the abstract method in BankAccount.
     */
   @Override
-  public double getMonthlyFeesAndInterest() {
+  protected double getMonthlyFeesAndInterest() {
       if (super.getBalance() >= 0) {
         return 0;
       }
