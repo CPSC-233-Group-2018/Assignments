@@ -21,6 +21,16 @@ public class SavingsAccount extends BankAccount {
     * Constructor that takes in a Customer object and a double and calls the superclass with the same parameters.
     * @param cust Customer object
     * @param balance initial amount of balance
+    */
+  SavingsAccount(Customer cust, double balance) {
+	  super(cust, balance);
+  }
+
+  /**
+    * Constructor that takes in a Customer object and a double and calls the superclass with the same parameters.
+    * Then assigns rate to annualInterestRate.
+    * @param cust Customer object
+    * @param balance initial amount of balance
     * @param rate annual rate
     */
   SavingsAccount(Customer cust, double balance, double rate) {
@@ -79,7 +89,7 @@ public class SavingsAccount extends BankAccount {
   @Override
   protected double getMonthlyFeesAndInterest() {
     if (super.getBalance() < 1000) {
-      return annualInterestRate/12-5;
+      return super.getBalance()*annualInterestRate/1200-5;
     }
     return super.getBalance()*annualInterestRate/1200;
   }
