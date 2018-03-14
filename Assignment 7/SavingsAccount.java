@@ -21,9 +21,11 @@ public class SavingsAccount extends BankAccount {
     * Constructor that takes in a Customer object and a double and calls the superclass with the same parameters.
     * @param cust Customer object
     * @param balance initial amount of balance
+    * @param rate annual rate
     */
-  SavingsAccount(Customer cust, double balance) {
+  SavingsAccount(Customer cust, double balance, double rate) {
 	  super(cust, balance);
+    annualInterestRate = rate;
   }
 
   /**
