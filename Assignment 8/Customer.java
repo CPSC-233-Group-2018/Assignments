@@ -2,13 +2,13 @@
  	* Tutorial 6 Team 3:
  	* Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
  	* -team assignment 7, Mar.12,2018-
- 	*  	A customer class that interacts with the BankAccount class.
+ 	*  	An immutable customer class that interacts with the BankAccount class.
 	*/
 
-public class Customer {
-	//instance variables
-	private String name;
-	private int customerID;
+public final class Customer {
+	//private instance variables, final values, cannot be changed
+	private final String name;
+	private final int customerID;
 
 	/**
 		* Default constructor for the class
@@ -35,20 +35,6 @@ public class Customer {
 	Customer(String cusName, int cusID) {
 		name = cusName;
 		customerID = cusID;
-	}
-
-	/** setName() takes in a string and sets it to name
-		* @param input new customer name
-		*/
-	public void setName(String input) {
-		name = input;
-	}
-
-	/** setID() takes in an int and sets it to customerID
-		* @param input new customer id
-		*/
-	public void setID(int input) {
-		customerID = input;
 	}
 
 	/** getName() returns the name
