@@ -1,0 +1,7 @@
+Q.) Why don’t we need to worry about privacy leaks with respect to the accountHolder 
+instance variable in BankAccount?
+
+A.) We don't need to worry about privacy leaks because even if you had access to a pointer or
+object of the customer/accountHolder class, you could not change its' values because they
+were declared "Final", and therefore are immutable after its initial creation. There are also
+no setter methods present. 
