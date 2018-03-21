@@ -1,7 +1,7 @@
 /**
  * Tutorial 6 Team 3:
  * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
- * -team assignment 7, Mar.12,2018-
+ * -team assignment 8, Mar.20,2018-
  *  	A BankAccount class that allows accounts to be created and withdraws and deposits
  *  	to be made. Also includes an overdraft feature.
  */
@@ -12,24 +12,24 @@ public abstract class BankAccount {
 	private Customer customer = new Customer();
 
 	/**
-		* Default constructor that takes no arguments.
-		*/
+	 * Default constructor that takes no arguments.
+	 */
 	BankAccount() {
     balance = 0.00;
 	}
 
 	/**
-		* Constructor that takes in an initial balance.
-		* @param initialBalance initial amount of balance
-		*/
+	 * Constructor that takes in an initial balance.
+	 * @param initialBalance initial amount of balance
+	 */
 	BankAccount(double initialBalance) {
 		balance = initialBalance;
 	}
 
   /** Contructor that takes in a Customer object and a balance.
-		* @param c Customer object
-		* @param bal initial amount of balance
-		*/
+	 * @param c Customer object
+	 * @param bal initial amount of balance
+ 	 */
 	BankAccount(Customer c, double bal){
     customer = c;
     balance = bal;
@@ -64,20 +64,25 @@ public abstract class BankAccount {
 
 	/**
 	 * getBalance() returns the balance.
-	 * @return balance
+	 * @return balance current balance of the account
 	 */
 	public double getBalance() {
 		return balance;
 	}
 
 	/**
-		* setBalance() takes in a double and sets the instance variable to that amount.
-		* @param amt balance to set
-		*/
+	 * setBalance() takes in a double and sets the instance variable to that amount.
+	 * @param amt balance to set
+	 */
 	protected void setBalance(double amt) {
 		balance = amt;
 	}
 
+	/**
+	* Transfers money by withdrawing from one account and depositing into another
+	* @param amt	money to deposit
+	* @param toAcc customer account to transfer to
+	*/
 	public void transfer(double amt, BankAccount toAcc) {
 		double bal = getBalance();
 		withdraw(amt);
@@ -87,32 +92,32 @@ public abstract class BankAccount {
 	}
 
 	/**
-		* getCustomer() returns the customer.
-		* @return customer new object
-		*/
+	 * getCustomer() returns the customer.
+	 * @return customer new object
+	 */
 	public Customer getCustomer(){
     return (new Customer(customer));
   }
 
 	/**
-		* setCustomer() takes in a customer object and sets the instance variable to that customer.
-		* @param c customer object to set
-		*/
+	 * setCustomer() takes in a customer object and sets the instance variable to that customer.
+	 * @param c customer object to set
+	 */
 	public void setCustomer(Customer c) {
 		customer = new Customer(c);
 	}
 
 	/**
-		* monthEndUpdate() adds the value returned from getMonthlyFeesAndInterest() to the balance.
-		*/
+ 	 * monthEndUpdate() adds the value returned from getMonthlyFeesAndInterest() to the balance.
+	 */
 	public void monthEndUpdate() {
 		balance += getMonthlyFeesAndInterest();
 	}
 
 	/**
-		* getMonthlyFeesAndInterest() is abstract and protected, so child classes can override method.
-		*/
+	 * getMonthlyFeesAndInterest() is abstract and protected, so child classes can override method.
+	 * @return feesAndInterest calculated fees and interest for the month
+	 */
 	protected abstract double getMonthlyFeesAndInterest();
 
-}
-//end of class
+} //end of class
