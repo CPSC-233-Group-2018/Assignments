@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import java.io.*;
+import java.util.*;
 import java.text.*;     //Imports text library ffor currency format
 
 public class BankApplication extends Application {
@@ -103,14 +104,26 @@ public class BankApplication extends Application {
     */
   public static void main(String[] args)
   {
+    Scanner input = new Scanner(System.in);
     File acc = new File("Account.txt");
     if (acc.exists()) {
       try {
         FileInputStream in = new FileInputStream(data);
         ObjectInputStream readAccount = new ObjectInputStream(in);
 
+
+      }
+    } else {
+      System.out.println("Create a savings account (S) or chequing account (C): ");
+      String choice = input.nextLine().toUpperCase();
+      if (choice.equals("S")) {
+
+      } else if (choice.equals("C")) {
+
+      } else {
         
       }
+
     }
     launch(args);
   }
