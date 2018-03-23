@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import java.io.*;
 import java.text.*;     //Imports text library ffor currency format
 
 public class BankApplication extends Application {
@@ -102,7 +103,16 @@ public class BankApplication extends Application {
     */
   public static void main(String[] args)
   {
-     launch(args);
+    File acc = new File("Account.txt");
+    if (acc.exists()) {
+      try {
+        FileInputStream in = new FileInputStream(data);
+        ObjectInputStream readAccount = new ObjectInputStream(in);
+
+        
+      }
+    }
+    launch(args);
   }
 
 }
