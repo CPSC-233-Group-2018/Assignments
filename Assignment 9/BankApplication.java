@@ -50,8 +50,8 @@ public class BankApplication extends Application {
           ChequingAccount cAcc = new ChequingAccount(c, Double.parseDouble(accInfo[2]), Double.parseDouble(accInfo[5]));
           cAcc.setOverdraftAmount(Double.parseDouble(accInfo[4]));
         } else {
-          SavingsAccount s = new SavingsAccount(c, Double.parseDouble(accInfo[2]));
-          s.setAnnualInterestRate(Double.parseDouble(accInfo[3]));
+          SavingsAccount sAcc = new SavingsAccount(c, Double.parseDouble(accInfo[2]));
+          sAcc.setAnnualInterestRate(Double.parseDouble(accInfo[3]));
         }
       } catch (FileNotFoundException e) {
               System.out.println("File could not be found. ");
@@ -63,20 +63,34 @@ public class BankApplication extends Application {
     } else {
       System.out.println("Create a savings account (S) or chequing account (C): ");
       String choice = input.nextLine().toUpperCase();
+      System.out.println("Enter name: ");
       String name = input.nextLine();
       Random random = new Random();
       int id = random.nextInt(9999 - 1000 + 1) + 1000;
       Customer createC = new Customer(name, id);
       if (choice.equals("S")) {
         System.out.println("Enter initial balance: ");
-        double
-        SavingsAccount s = new SavingsAccount(createC, );
-        s.setAnnualInterestRate(Integer.parseInt(accInfo[3]));
+        input = new Scanner(System.in);
+        double balS = input.nextDouble();
+        System.out.println("Enter annual interest rate: ");
+        input = new Scanner(System.in);
+        double rate = input.nextDouble();
+        SavingsAccount s = new SavingsAccount(createC, balS);
+        s.setAnnualInterestRate(rate);
       } else if (choice.equals("C")) {
-
-      } else {
-
+        System.out.println("Enter initial balance: ");
+        input = new Scanner(System.in);
+        double balC = input.nextDouble();
+        System.out.println("Enter overdraft amount: ");
+        input = new Scanner(System.in);
+        double overAmt = input.nextDouble();
+        System.out.println("Enter overdraft fee: ");
+        input = new Scanner(System.in);
+        double overFee = input.nextDouble();
+        ChequingAccount c = new ChequingAccount(createC, balC, overFee);
+        c.setOverdraftAmount(overAmt);
       }
+
     }
     NumberFormat currency = NumberFormat.getCurrencyInstance();       //Currency formatter used to format doubles
     VBox vbox = new VBox();                                           //Create new empty vertical box panel
