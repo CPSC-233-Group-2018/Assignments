@@ -128,17 +128,20 @@ public class BankApplication extends Application {
           s.setAnnualInterestRate(Integer.parseInt(accInfo[3]));
         }
       } catch (FileNotFoundException e) {
-              System.out.println("Problem with input/output.");
+              System.out.println("File could not be found. ");
               System.err.println("FileNotFoundException: " + e.getMessage());
       } catch (IOException e) {
-              System.out.println("File could not be found.");
+              System.out.println("Problem with input/output. ");
               System.err.println("IOException: " + e.getMessage());
       }
     } else {
       System.out.println("Create a savings account (S) or chequing account (C): ");
       String choice = input.nextLine().toUpperCase();
+      String name = input.nextLine();
+      Random random = new Random();
+      int id = random.nextInt(9999 - 1000 + 1) + 1000;
       if (choice.equals("S")) {
-        
+
       } else if (choice.equals("C")) {
 
       } else {
