@@ -108,8 +108,8 @@ public class BankApplication extends Application {
     File acc = new File("Account.txt");
     if (acc.exists()) {
       try {
-        FileInputStream in = new FileInputStream(data);
-        ObjectInputStream readAccount = new ObjectInputStream(in);
+        BufferedReader inputFile = new BufferedReader(new FileReader(acc));
+        String line = inputFile.readLine();
 
 
       }
@@ -121,7 +121,7 @@ public class BankApplication extends Application {
       } else if (choice.equals("C")) {
 
       } else {
-        
+
       }
 
     }
