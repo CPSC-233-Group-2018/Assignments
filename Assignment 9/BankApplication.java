@@ -30,6 +30,51 @@ public class BankApplication extends Application {
     */
   @Override
   public void start(Stage primaryStage) throws Exception {
+    Scanner input = new Scanner(System.in);
+    File acc = new File("Account.txt");
+    if (acc.exists()) {
+      try {
+        BufferedReader inputFile = new BufferedReader(new FileReader(acc));
+        String line = inputFile.readLine();
+        String[] accInfo = new String[6];     //new array to store information
+        //0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
+
+        while ((line = inputFile.readLine()) != null) {
+          for (int i = 0; i < accInfo.length; i++) {
+            accInfo[i] = line;
+          }
+        }
+        inputFile.close();
+        Customer c = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
+        if (accInfo[3].equals("")) {    //checks to see if interest rate is empty
+          ChequingAccount cAcc = new ChequingAccount(c, Integer.parseInt(accInfo[2]), Integer.parseInt(accInfo[5]));
+          cAcc.setOverdraftAmount(Integer.parseInt(accInfo[4]));
+        } else {
+          SavingsAccount s = new SavingsAccount(c, Integer.parseInt(accInfo[2]));
+          s.setAnnualInterestRate(Integer.parseInt(accInfo[3]));
+        }
+      } catch (FileNotFoundException e) {
+              System.out.println("File could not be found. ");
+              System.err.println("FileNotFoundException: " + e.getMessage());
+      } catch (IOException e) {
+              System.out.println("Problem with input/output. ");
+              System.err.println("IOException: " + e.getMessage());
+      }
+    } else {
+      System.out.println("Create a savings account (S) or chequing account (C): ");
+      String choice = input.nextLine().toUpperCase();
+      String name = input.nextLine();
+      Random random = new Random();
+      int id = random.nextInt(9999 - 1000 + 1) + 1000;
+      if (choice.equals("S")) {
+        SavingsAccount s = new SavingsAccount(c, Integer.parseInt(accInfo[2]));
+        s.setAnnualInterestRate(Integer.parseInt(accInfo[3]));
+      } else if (choice.equals("C")) {
+
+      } else {
+
+      }
+    }
     NumberFormat currency = NumberFormat.getCurrencyInstance();       //Currency formatter used to format doubles
     VBox vbox = new VBox();                                           //Create new empty vertical box panel
     Label customerNameLabel = new Label("Customer name: " + customer.getName());                  //Create new label for customer name
@@ -104,50 +149,6 @@ public class BankApplication extends Application {
     */
   public static void main(String[] args)
   {
-    Scanner input = new Scanner(System.in);
-    File acc = new File("Account.txt");
-    if (acc.exists()) {
-      try {
-        BufferedReader inputFile = new BufferedReader(new FileReader(acc));
-        String line = inputFile.readLine();
-        String[] accInfo = new String[6];     //new array to store information
-        //0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
-
-        while ((line = inputFile.readLine()) != null) {
-          for (int i = 0; i < accInfo.length; i++) {
-            accInfo[i] = line;
-          }
-        }
-        inputFile.close();
-        Customer c = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
-        if (accInfo[3].equals("")) {    //checks to see if interest rate is empty
-          ChequingAccount cAcc = new ChequingAccount(c, Integer.parseInt(accInfo[2]), Integer.parseInt(accInfo[5]));
-          cAcc.setOverdraftAmount(Integer.parseInt(accInfo[4]));
-        } else {
-          SavingsAccount s = new SavingsAccount(c, Integer.parseInt(accInfo[2]));
-          s.setAnnualInterestRate(Integer.parseInt(accInfo[3]));
-        }
-      } catch (FileNotFoundException e) {
-              System.out.println("File could not be found. ");
-              System.err.println("FileNotFoundException: " + e.getMessage());
-      } catch (IOException e) {
-              System.out.println("Problem with input/output. ");
-              System.err.println("IOException: " + e.getMessage());
-      }
-    } else {
-      System.out.println("Create a savings account (S) or chequing account (C): ");
-      String choice = input.nextLine().toUpperCase();
-      String name = input.nextLine();
-      Random random = new Random();
-      int id = random.nextInt(9999 - 1000 + 1) + 1000;
-      if (choice.equals("S")) {
-
-      } else if (choice.equals("C")) {
-
-      } else {
-
-      }
-    }
     launch(args);
   }
 }
