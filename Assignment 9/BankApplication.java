@@ -110,8 +110,29 @@ public class BankApplication extends Application {
       try {
         BufferedReader inputFile = new BufferedReader(new FileReader(acc));
         String line = inputFile.readLine();
+        String[] accInfo = new String[6];     //new array to store information
+        //0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
 
-
+        while ((line = inputFile.readLine()) != null) {
+          for (int i = 0; i < accInfo.length; i++) {
+            accInfo[i] = line;
+          }
+        }
+        inputFile.close();
+        customer = new Customer(accInfo[0]), Integer.parseInt(accInfo[1]);  //new customer with name and id
+        if (accInfo[3].equals("")) {    //checks to see if interest rate is empty
+          ChequingAccount cAcc = new ChequingAccount(customer, Integer.parseInt(accInfo[2]), Integer.parseInt(accInfo[5]));
+          cAcc.setOverdraftAmount(Integer.parseInt(accInfo[4]));
+        } else {
+          savings = new SavingsAccount(customer, Integer.parseInt(accInfo[2]));
+          savings.setAnnualInterestRate(Integer.parseInt(accInfo[3]));
+        }
+      } catch (FileNotFoundException e) {
+              System.out.println("Problem with input/output.");
+              System.err.println("FileNotFoundException: " + e.getMessage());
+      } catch (IOException e) {
+              System.out.println("File could not be found.");
+              System.err.println("IOException: " + e.getMessage());
       }
     } else {
       System.out.println("Create a savings account (S) or chequing account (C): ");
