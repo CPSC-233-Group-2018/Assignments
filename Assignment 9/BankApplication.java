@@ -23,6 +23,7 @@ public class BankApplication extends Application {
   //Create and initialize instance objects Customer and SavgingsAccount
   private Customer customer = new Customer("Charles Brown", 123456);
   private SavingsAccount savings = new SavingsAccount(customer, 150.00);
+  //private ChequingAccount chequing = new ChequingAccount(customer, 150.00, 10);
 
   /**
     * start() shows the GUI and its components
@@ -163,14 +164,16 @@ public class BankApplication extends Application {
     primaryStage.show();                            //Show the stage
 
 //0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
-    primaryStage.setOnCloseRequest((WindowEvent e) -> {
-      BufferedWriter writer = new BufferedWriter(new FileWriter("Account.txt"), true);
-      writer.write(customer.getName());
-      writer.write(customer.getID());
-      writer.write(customer.getBalance());
-      writer.write(savings.getAnnualInterestRate());
-      writer.write(c.getOverdraftAmount());
-      writer.write(c.getOverdraftFee());
+    primaryStage.setOnCloseRequest(e -> {
+      System.out.println("Saving ...");
+      BufferedWriter writer = new BufferedWriter(new FileWriter("Account.txt"));
+      writer.write("\n"+customer.getName());
+      writer.write("\n"+Integer.toString(customer.getID()));
+      writer.write("\n"+Double.toString(savings.getBalance()));
+      writer.write("\n"+Double.toString(savings.getAnnualInterestRate()));
+      writer.write("\n"+Double.toString(c.getOverdraftAmount()));
+      writer.write("\n"+Double.toString(c.getOverdraftFee()));
+
     });
   }
 
