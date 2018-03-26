@@ -119,13 +119,13 @@ public class BankApplication extends Application {
           }
         }
         inputFile.close();
-        customer = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
+        Customer c = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
         if (accInfo[3].equals("")) {    //checks to see if interest rate is empty
-          ChequingAccount cAcc = new ChequingAccount(customer, Integer.parseInt(accInfo[2]), Integer.parseInt(accInfo[5]));
+          ChequingAccount cAcc = new ChequingAccount(c, Integer.parseInt(accInfo[2]), Integer.parseInt(accInfo[5]));
           cAcc.setOverdraftAmount(Integer.parseInt(accInfo[4]));
         } else {
-          savings = new SavingsAccount(customer, Integer.parseInt(accInfo[2]));
-          savings.setAnnualInterestRate(Integer.parseInt(accInfo[3]));
+          SavingsAccount s = new SavingsAccount(c, Integer.parseInt(accInfo[2]));
+          s.setAnnualInterestRate(Integer.parseInt(accInfo[3]));
         }
       } catch (FileNotFoundException e) {
               System.out.println("Problem with input/output.");
@@ -138,8 +138,7 @@ public class BankApplication extends Application {
       System.out.println("Create a savings account (S) or chequing account (C): ");
       String choice = input.nextLine().toUpperCase();
       if (choice.equals("S")) {
-
-
+        
       } else if (choice.equals("C")) {
 
       } else {
