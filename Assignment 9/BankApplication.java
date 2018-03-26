@@ -161,6 +161,17 @@ public class BankApplication extends Application {
     primaryStage.setTitle("Bank application");      //Set the title of the stage
     primaryStage.setScene(scene);                   //Set the stage to the scene
     primaryStage.show();                            //Show the stage
+
+//0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
+    primaryStage.setOnCloseRequest((WindowEvent e) -> {
+      BufferedWriter writer = new BufferedWriter(new FileWriter("Account.txt"), true);
+      writer.write(customer.getName());
+      writer.write(customer.getID());
+      writer.write(customer.getBalance());
+      writer.write(savings.getAnnualInterestRate());
+      writer.write(c.getOverdraftAmount());
+      writer.write(c.getOverdraftFee());
+    });
   }
 
   /**
