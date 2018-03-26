@@ -47,11 +47,11 @@ public class BankApplication extends Application {
         inputFile.close();
         Customer c = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
         if (accInfo[3].equals("")) {    //checks to see if interest rate is empty
-          ChequingAccount cAcc = new ChequingAccount(c, Integer.parseInt(accInfo[2]), Integer.parseInt(accInfo[5]));
-          cAcc.setOverdraftAmount(Integer.parseInt(accInfo[4]));
+          ChequingAccount cAcc = new ChequingAccount(c, Double.parseDouble(accInfo[2]), Double.parseDouble(accInfo[5]));
+          cAcc.setOverdraftAmount(Double.parseDouble(accInfo[4]));
         } else {
-          SavingsAccount s = new SavingsAccount(c, Integer.parseInt(accInfo[2]));
-          s.setAnnualInterestRate(Integer.parseInt(accInfo[3]));
+          SavingsAccount s = new SavingsAccount(c, Double.parseDouble(accInfo[2]));
+          s.setAnnualInterestRate(Double.parseDouble(accInfo[3]));
         }
       } catch (FileNotFoundException e) {
               System.out.println("File could not be found. ");
@@ -66,8 +66,11 @@ public class BankApplication extends Application {
       String name = input.nextLine();
       Random random = new Random();
       int id = random.nextInt(9999 - 1000 + 1) + 1000;
+      Customer createC = new Customer(name, id);
       if (choice.equals("S")) {
-        SavingsAccount s = new SavingsAccount(c, Integer.parseInt(accInfo[2]));
+        System.out.println("Enter initial balance: ");
+        double
+        SavingsAccount s = new SavingsAccount(createC, );
         s.setAnnualInterestRate(Integer.parseInt(accInfo[3]));
       } else if (choice.equals("C")) {
 
