@@ -119,7 +119,7 @@ public class BankApplication extends Application {
           }
         }
         inputFile.close();
-        customer = new Customer(accInfo[0]), Integer.parseInt(accInfo[1]);  //new customer with name and id
+        customer = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
         if (accInfo[3].equals("")) {    //checks to see if interest rate is empty
           ChequingAccount cAcc = new ChequingAccount(customer, Integer.parseInt(accInfo[2]), Integer.parseInt(accInfo[5]));
           cAcc.setOverdraftAmount(Integer.parseInt(accInfo[4]));
@@ -139,14 +139,13 @@ public class BankApplication extends Application {
       String choice = input.nextLine().toUpperCase();
       if (choice.equals("S")) {
 
+
       } else if (choice.equals("C")) {
 
       } else {
 
       }
-
     }
     launch(args);
   }
-
 }
