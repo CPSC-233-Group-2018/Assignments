@@ -45,14 +45,16 @@ public class BankApplication extends Application {
           }
         }
         inputFile.close();
-        Customer c = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
+        Customer cust = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
+        customer = new Customer(cust);
         if (accInfo[3].equals("")) {    //checks to see if interest rate is empty
-          ChequingAccount cAcc = new ChequingAccount(c, Double.parseDouble(accInfo[2]), Double.parseDouble(accInfo[5]));
+          ChequingAccount cAcc = new ChequingAccount(cust, Double.parseDouble(accInfo[2]), Double.parseDouble(accInfo[5]));
           cAcc.setOverdraftAmount(Double.parseDouble(accInfo[4]));
         } else {
-          SavingsAccount sAcc = new SavingsAccount(c, Double.parseDouble(accInfo[2]));
-          sAcc.setAnnualInterestRate(Double.parseDouble(accInfo[3]));
+          savings = new SavingsAccount(cust, Double.parseDouble(accInfo[2]));
+          savings.setAnnualInterestRate(Double.parseDouble(accInfo[3]));
         }
+
       } catch (FileNotFoundException e) {
               System.out.println("File could not be found. ");
               System.err.println("FileNotFoundException: " + e.getMessage());
@@ -68,6 +70,7 @@ public class BankApplication extends Application {
       Random random = new Random();
       int id = random.nextInt(9999 - 1000 + 1) + 1000;
       Customer createC = new Customer(name, id);
+      customer = new Customer(createC);
       if (choice.equals("S")) {
         System.out.println("Enter initial balance: ");
         input = new Scanner(System.in);
@@ -75,8 +78,8 @@ public class BankApplication extends Application {
         System.out.println("Enter annual interest rate: ");
         input = new Scanner(System.in);
         double rate = input.nextDouble();
-        SavingsAccount s = new SavingsAccount(createC, balS);
-        s.setAnnualInterestRate(rate);
+        savings = new SavingsAccount(createC, balS);
+        savings.setAnnualInterestRate(rate);
       } else if (choice.equals("C")) {
         System.out.println("Enter initial balance: ");
         input = new Scanner(System.in);
