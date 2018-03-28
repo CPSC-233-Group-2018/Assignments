@@ -116,17 +116,12 @@ public class BankApplication extends Application {
     Label balanceLabel;
     Label errorMessages = new Label("\n");
     Label customerTypeLabel = new Label("");                  //blank to start off
-    Label fileNotificationLabel = new Label("");
-    TextField typeField = new TextField();
-    typeField.setPromptText("Type of Account: (S) or (C)");
-    TextField nameField = new TextField(); //name field for creating an account
-    nameField.setPromptText("Name"); 
-    TextField inputBalanceField = new TextField();   //balance fields
-    inputBalanceField.setPromptText("Balance");
-    TextField overDraftAndInterestField = new TextField(); //will function for either overdraft or interest
-    overDraftAndInterestField.setPromptText("Overdraft or Interest");
-    TextField overDraftFeeField = new TextField();
-    overDraftFeeField.setPromptText("Overdraft fee (if needed)");
+    // Label fileNotificationLabel = new Label("");
+    // TextField typeField = new TextField("Type of Account: (S) or (C)");
+    // TextField nameField = new TextField("Name");              //name field for creating an account
+    // TextField inputBalanceField = new TextField("balance");   //balance fields
+    // TextField overDraftAndInterestField = new TextField("Overdraft or Interest"); //will function for either overdraft or interest
+    // TextField overDraftFeeField = new TextField("overdraft fee (if needed)");
 
     if (isSavings == true) {    //creating an account label based on its type
       customerTypeLabel.setText("Account type: " + "Savings");
@@ -141,19 +136,19 @@ public class BankApplication extends Application {
       balanceLabel= new Label("Current balance: " + currency.format(chequing.getBalance()));  //Create new label for current balance
     }
 
-    if (acc.exists()) {       //if an account file exists, display a message accordingly
-      fileNotificationLabel.setText("Account File found!\n");
-    } else {
-      fileNotificationLabel.setText("Account File NOT found! Please setup an account!\n");
-    }
+    // if (acc.exists()) {       //if an account file exists, display a message accordingly
+    //   fileNotificationLabel.setText("Account File found!\n");
+    // } else {
+    //   fileNotificationLabel.setText("Account File NOT found! Please setup an account!\n");
+    // }
 
     //Add customer name, id labels and type and textfields to vertical box
-    vbox.getChildren().add(fileNotificationLabel);
-    vbox.getChildren().add(typeField);
-    vbox.getChildren().add(nameField);
-    vbox.getChildren().add(inputBalanceField);
-    vbox.getChildren().add(overDraftAndInterestField);
-    vbox.getChildren().add(overDraftFeeField);
+    // vbox.getChildren().add(fileNotificationLabel);
+    // vbox.getChildren().add(typeField);
+    // vbox.getChildren().add(nameField);
+    // vbox.getChildren().add(inputBalanceField);
+    // vbox.getChildren().add(overDraftAndInterestField);
+    // vbox.getChildren().add(overDraftFeeField);
     vbox.getChildren().add(customerNameLabel);
     vbox.getChildren().add(customerIDLabel);
     vbox.getChildren().add(customerTypeLabel);
@@ -162,10 +157,8 @@ public class BankApplication extends Application {
     vbox.getChildren().add(errorMessages);
 
     HBox hbox = new HBox();                                         //Create new empty horizontal box panel
-    TextField depositTextField = new TextField();   //Create a text field showing initial text to user
-    depositTextField.setPromptText("Amt to deposit");
-    TextField withdrawTextField = new TextField(); //Craete a text field showing initial text to user
-    withdrawTextField.setPromptText("Amt to withdraw");
+    TextField depositTextField = new TextField("Amt to deposit");   //Create a text field showing initial text to user
+    TextField withdrawTextField = new TextField("Amt to withdraw"); //Craete a text field showing initial text to user
 
     //Add both text fields to the horizontal box
     hbox.getChildren().add(depositTextField);
@@ -204,7 +197,7 @@ public class BankApplication extends Application {
             if (depositAmt >= 0 && Double.isInfinite(depositAmt) == false && (isSavings == true)) {    //Check if the double parsed is positive and is not infinity
               savings.deposit(depositAmt);          //Call the deposit method from the chequing object with depositAmt
             }
-            depositTextField.clear();        //Reset the deposit text field with initial text
+            depositTextField.setText("Amt to deposit");         //Reset the deposit text field with initial text
             if (isSavings == true){
               balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));  //Update the balance
             }
@@ -213,7 +206,7 @@ public class BankApplication extends Application {
             }
           } catch (NumberFormatException e) {       //Catch a NumberFormatException
             errorMessages.setText("~Not a valid input! Must be numbers.");
-            depositTextField.clear();         //Reset the deposit text field with initial text
+            depositTextField.setText("Amt to deposit");         //Reset the deposit text field with initial text
             System.out.println("Error with number format. ");   //Print to user that number format is incorrect
             System.err.println("NumberFormatException: " + e.getMessage());     //Print error message
           }
@@ -244,7 +237,7 @@ public class BankApplication extends Application {
             }
 
             //after execution of withdraw and deposit, reset the GUI's display
-            withdrawTextField.clear();   //Reset the withdraw text field with initial text
+            withdrawTextField.setText("Amt to withdraw");   //Reset the withdraw text field with initial text
 
             if (isSavings==false){
               balanceLabel.setText("Current balance: " + currency.format(chequing.getBalance()));  //Update the balance
@@ -255,7 +248,7 @@ public class BankApplication extends Application {
 
           } catch (NumberFormatException e) {       //Catch a NumberFormatException
             errorMessages.setText("~Not a valid input! Must be numbers.");
-            withdrawTextField.clear();      //Reset the withdraw text field with initial text
+            withdrawTextField.setText("Amt to withdraw");       //Reset the withdraw text field with initial text
             System.out.println("Error with number format. ");   //Print to user that number format is incorrect
             System.err.println("NumberFormatException: " + e.getMessage());     //Print error message
           }
