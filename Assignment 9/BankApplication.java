@@ -23,7 +23,8 @@ public class BankApplication extends Application {
   //Create and initialize instance objects Customer and SavgingsAccount
   private Customer customer = new Customer("Charles Brown", 123456);
   private SavingsAccount savings = new SavingsAccount(customer, 150.00);
-  private ChequingAccount chequing = new ChequingAccount(customer, 150.00, 10);
+  private ChequingAccount chequing = new ChequingAccount(customer, 2000.00, 10);
+  private Boolean isSavings = false;
 
   /**
     * start() shows the GUI and its components
@@ -47,28 +48,32 @@ public class BankApplication extends Application {
         String line = inputFile.readLine();
         String[] accInfo = new String[6];     //new array to store information
     //     //0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
-    //
-         while ((line = inputFile.readLine()) != null) {
-           for (int i = 0; i < accInfo.length; i++) {
-             accInfo[i] = line;
-           }
+        int count = 0;
+         while (((line = inputFile.readLine()) != null) && (count <accInfo.length)){
+             accInfo[count] = line;
+             System.out.println("Iteration Number:" + count + Arrays.toString(accInfo));
+             count+=1;
+
          }
+         System.out.println(Arrays.toString(accInfo));
          inputFile.close();
       try{
-        Customer cust = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
+        Customer cust = new Customer(accInfo[0], Integer.valueOf(accInfo[1]));  //new customer with name and id
         customer = new Customer(cust);
-        if (accInfo[3].equals("")) {    //checks to see if interest rate is empty
+        if (accInfo[3].equals("0.0")) {    //checks to see if interest rate is empty
           chequing = new ChequingAccount(cust, Double.parseDouble(accInfo[2]), Double.parseDouble(accInfo[5]));
           chequing.setOverdraftAmount(Double.parseDouble(accInfo[4]));
         } else {
           savings = new SavingsAccount(cust, Double.parseDouble(accInfo[2]));
           savings.setAnnualInterestRate(Double.parseDouble(accInfo[3]));
+          isSavings = true;
         }
 
+
       }catch (Exception e) {
-              System.out.println("Error in lines 58-65");
-              System.err.println("FileNotFoundException: " + e.getMessage());
-      }
+            System.out.println("Error in lines 58-65");
+            System.err.println("Exception: " + e.getMessage());
+    }
     }else {
 
 
@@ -108,7 +113,12 @@ public class BankApplication extends Application {
     VBox vbox = new VBox();                                           //Create new empty vertical box panel
     Label customerNameLabel = new Label("Customer name: " + customer.getName());                  //Create new label for customer name
     Label customerIDLabel = new Label("Account ID: " + customer.getID());                         //Create new label for customer id
-    Label balanceLabel = new Label("Current balance: " + currency.format(savings.getBalance()));  //Create new label for current balance
+    Label balanceLabel;
+    if (isSavings == true){
+      balanceLabel= new Label("Current balance: " + currency.format(savings.getBalance()));  //Create new label for current balance
+    }
+    else{ balanceLabel= new Label("Current balance: " + currency.format(chequing.getBalance()));  //Create new label for current balance
+  }
 
     //Add customer name and id labels to vertical box
     vbox.getChildren().add(customerNameLabel);
@@ -142,22 +152,38 @@ public class BankApplication extends Application {
         public void handle(ActionEvent event) {
           try {             //Try to parse a double from the text obtained from the deposit text field
             double depositAmt = Double.parseDouble(depositTextField.getText());
-            if (depositAmt >= 0 && Double.isInfinite(depositAmt) == false) {    //Check if the double parsed is positive and is not infinity
-              savings.deposit(depositAmt);          //Call the deposit method from the savings object with depositAmt
+            if (depositAmt >= 0 && Double.isInfinite(depositAmt) == false && (isSavings == false)) {    //Check if the double parsed is positive and is not infinity
+              chequing.deposit(depositAmt);          //Call the deposit method from the chequing object with depositAmt
+            }
+            if (depositAmt >= 0 && Double.isInfinite(depositAmt) == false && (isSavings == true)) {    //Check if the double parsed is positive and is not infinity
+              savings.deposit(depositAmt);          //Call the deposit method from the chequing object with depositAmt
             }
             depositTextField.setText("Amt to deposit");         //Reset the deposit text field with initial text
-            balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));  //Update the balance
+            if (isSavings == true){
+                balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));  //Update the balance
+            }
+            if (isSavings == false){
+            balanceLabel.setText("Current balance: " + currency.format(chequing.getBalance()));  //Update the balance
+          }
           } catch (NumberFormatException e) {       //Catch a NumberFormatException
             depositTextField.setText("Amt to deposit");         //Reset the deposit text field with initial text
             System.out.println("Error with number format. ");   //Print to user that number format is incorrect
             System.err.println("NumberFormatException: " + e.getMessage());     //Print error message
           } try {           //Try to parse a double from the text obtained from the withdraw text field
             double withdrawAmt = Double.parseDouble(withdrawTextField.getText());
-            if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false) {  //Check if the double parsed is positive and is not infinity
-              savings.withdraw(withdrawAmt);        //Call the withdraw method from the savings object with withdrawAmt
+            if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false && (isSavings == false)) {  //Check if the double parsed is positive and is not infinity
+              chequing.withdraw(withdrawAmt);        //Call the withdraw method from the chequing object with withdrawAmt
+            }
+            if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false && (isSavings == true)) {  //Check if the double parsed is positive and is not infinity
+              savings.withdraw(withdrawAmt);        //Call the withdraw method from the chequing object with withdrawAmt
             }
             withdrawTextField.setText("Amt to withdraw");       //Reset the withdraw text field with initial text
-            balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));  //Update the balance
+            if (isSavings==false){
+            balanceLabel.setText("Current balance: " + currency.format(chequing.getBalance()));  //Update the balance
+          }
+          if (isSavings==true){
+          balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));  //Update the balance
+        }
           } catch (NumberFormatException e) {       //Catch a NumberFormatException
             withdrawTextField.setText("Amt to withdraw");       //Reset the withdraw text field with initial text
             System.out.println("Error with number format. ");   //Print to user that number format is incorrect
@@ -194,30 +220,44 @@ try{
 System.out.println("Exception thrown in line 188");
 }
 
+if (isSavings==false){
 try{
  theWriter.write("\n"+Double.toString(chequing.getBalance()));
 } catch(Exception e){
 System.out.println("Exception thrown in line 194");
 }
+}
 
+if (isSavings==true){
+try{
+ theWriter.write("\n"+Double.toString(savings.getBalance()));
+} catch(Exception e){
+System.out.println("Exception thrown in line 194");
+}
+}
+
+if (isSavings==true){
 try{
  theWriter.write("\n"+Double.toString(savings.getAnnualInterestRate()));
 } catch(Exception e){
 System.out.println("Exception thrown in line 200");
 }
+}
 
-
-
+if (isSavings==false){
 try{
  theWriter.write("\n"+Double.toString(chequing.getOverdraftAmount()));
 } catch(Exception e){
 System.out.println("Exception thrown in line 206");
 }
+}
 
+if (isSavings==false){
 try{
  theWriter.write("\n"+Double.toString(chequing.getOverdraftFee()));
 } catch(Exception e){
 System.out.println("Exception thrown in line 212");
+}
 }
 
 try{
