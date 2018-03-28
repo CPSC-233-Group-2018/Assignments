@@ -174,39 +174,52 @@ public class BankApplication extends Application {
       try{
        theWriter= new BufferedWriter(new FileWriter("Account.txt"));
     } catch(Exception e){
-      System.out.println("Exception thrown in line 170");
+      System.out.println("Exception thrown in line 175");
     }
 
-    //These all trow a IOException
+
     try{
-     theWriter.write(customer.getName());
+     theWriter.write("\n" + (customer.getName()));
   } catch(Exception e){
-    System.out.println("Exception thrown in line 178");
+    System.out.println("Exception thrown in line 182");
   }
-  try{
-   theWriter.close();
-} catch(Exception e){
-  System.out.println("Exception thrown in line 189");
-}
 
 try{
  theWriter.write("\n"+Integer.toString(customer.getID()));
 } catch(Exception e){
-System.out.println("Exception thrown in line 193");
+System.out.println("Exception thrown in line 188");
 }
 
 try{
  theWriter.write("\n"+Double.toString(savings.getBalance()));
 } catch(Exception e){
-System.out.println("Exception thrown in line 189");
+System.out.println("Exception thrown in line 194");
 }
-      // writer.write("\n"+Double.toString(savings.getAnnualInterestRate()));
-      // writer.write("\n"+Double.toString(c.getOverdraftAmount()));
-      // writer.write("\n"+Double.toString(c.getOverdraftFee()));
-      try{
+
+try{
+ theWriter.write("\n"+Double.toString(savings.getAnnualInterestRate()));
+} catch(Exception e){
+System.out.println("Exception thrown in line 200");
+}
+
+//Still Throw Errors
+
+// try{
+//  theWriter.write("\n"+Double.toString(c.getOverdraftAmount()));
+// } catch(Exception e){
+// System.out.println("Exception thrown in line 206");
+// }
+//
+// try{
+//  theWriter.write("\n"+Double.toString(c.getOverdraftFee()));
+// } catch(Exception e){
+// System.out.println("Exception thrown in line 212");
+// }
+
+try{
        theWriter.close();
     } catch(Exception e){
-      System.out.println("Exception thrown in line 189");
+      System.out.println("Exception thrown in line 218");
     }
 
     });
