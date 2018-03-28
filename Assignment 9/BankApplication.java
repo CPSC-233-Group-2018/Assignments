@@ -116,12 +116,12 @@ public class BankApplication extends Application {
     Label balanceLabel;
     Label errorMessages = new Label("\n");
     Label customerTypeLabel = new Label("");                  //blank to start off
-    Label fileNotificationLabel = new Label("");
-    TextField typeField = new TextField("Type of Account: (S) or (C)");
-    TextField nameField = new TextField("Name");              //name field for creating an account
-    TextField inputBalanceField = new TextField("balance");   //balance fields
-    TextField overDraftAndInterestField = new TextField("Overdraft or Interest"); //will function for either overdraft or interest
-    TextField overDraftFeeField = new TextField("overdraft fee (if needed)");
+    // Label fileNotificationLabel = new Label("");
+    // TextField typeField = new TextField("Type of Account: (S) or (C)");
+    // TextField nameField = new TextField("Name");              //name field for creating an account
+    // TextField inputBalanceField = new TextField("balance");   //balance fields
+    // TextField overDraftAndInterestField = new TextField("Overdraft or Interest"); //will function for either overdraft or interest
+    // TextField overDraftFeeField = new TextField("overdraft fee (if needed)");
 
     if (isSavings == true) {    //creating an account label based on its type
       customerTypeLabel.setText("Account type: " + "Savings");
@@ -136,19 +136,19 @@ public class BankApplication extends Application {
       balanceLabel= new Label("Current balance: " + currency.format(chequing.getBalance()));  //Create new label for current balance
     }
 
-    if (acc.exists()) {       //if an account file exists, display a message accordingly
-      fileNotificationLabel.setText("Account File found!\n");
-    } else {
-      fileNotificationLabel.setText("Account File NOT found! Please setup an account!\n");
-    }
+    // if (acc.exists()) {       //if an account file exists, display a message accordingly
+    //   fileNotificationLabel.setText("Account File found!\n");
+    // } else {
+    //   fileNotificationLabel.setText("Account File NOT found! Please setup an account!\n");
+    // }
 
     //Add customer name, id labels and type and textfields to vertical box
-    vbox.getChildren().add(fileNotificationLabel);
-    vbox.getChildren().add(typeField);
-    vbox.getChildren().add(nameField);
-    vbox.getChildren().add(inputBalanceField);
-    vbox.getChildren().add(overDraftAndInterestField);
-    vbox.getChildren().add(overDraftFeeField);
+    // vbox.getChildren().add(fileNotificationLabel);
+    // vbox.getChildren().add(typeField);
+    // vbox.getChildren().add(nameField);
+    // vbox.getChildren().add(inputBalanceField);
+    // vbox.getChildren().add(overDraftAndInterestField);
+    // vbox.getChildren().add(overDraftFeeField);
     vbox.getChildren().add(customerNameLabel);
     vbox.getChildren().add(customerIDLabel);
     vbox.getChildren().add(customerTypeLabel);
