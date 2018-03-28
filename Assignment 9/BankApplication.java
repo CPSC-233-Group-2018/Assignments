@@ -23,7 +23,7 @@ public class BankApplication extends Application {
   //Create and initialize instance objects Customer and SavgingsAccount
   private Customer customer = new Customer("Charles Brown", 123456);
   private SavingsAccount savings = new SavingsAccount(customer, 150.00);
-  //private ChequingAccount chequing = new ChequingAccount(customer, 150.00, 10);
+  private ChequingAccount chequing = new ChequingAccount(customer, 150.00, 10);
 
   /**
     * start() shows the GUI and its components
@@ -204,17 +204,17 @@ System.out.println("Exception thrown in line 200");
 
 //Still Throw Errors
 
-// try{
-//  theWriter.write("\n"+Double.toString(c.getOverdraftAmount()));
-// } catch(Exception e){
-// System.out.println("Exception thrown in line 206");
-// }
-//
-// try{
-//  theWriter.write("\n"+Double.toString(c.getOverdraftFee()));
-// } catch(Exception e){
-// System.out.println("Exception thrown in line 212");
-// }
+try{
+ theWriter.write("\n"+Double.toString(chequing.getOverdraftAmount()));
+} catch(Exception e){
+System.out.println("Exception thrown in line 206");
+}
+
+try{
+ theWriter.write("\n"+Double.toString(chequing.getOverdraftFee()));
+} catch(Exception e){
+System.out.println("Exception thrown in line 212");
+}
 
 try{
        theWriter.close();
