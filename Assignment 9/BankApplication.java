@@ -34,38 +34,44 @@ public class BankApplication extends Application {
     Scanner input = new Scanner(System.in);
 
 
-    // File acc = new File("Account.txt");
-    // if (acc.exists()) {
-    //   try {
-    //     BufferedReader inputFile = new BufferedReader(new FileReader(acc));
-    //     String line = inputFile.readLine();
-    //     String[] accInfo = new String[6];     //new array to store information
+    File acc = new File("Account.txt");
+    if (acc.exists()) {
+      BufferedReader inputFile = null;
+    try {
+
+      inputFile = new BufferedReader(new FileReader(acc));
+    }
+    catch (Exception e){
+      System.out.println("Exception in line 42");
+    }
+        String line = inputFile.readLine();
+        String[] accInfo = new String[6];     //new array to store information
     //     //0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
     //
-    //     while ((line = inputFile.readLine()) != null) {
-    //       for (int i = 0; i < accInfo.length; i++) {
-    //         accInfo[i] = line;
-    //       }
-    //     }
-    //     inputFile.close();
-    //     Customer cust = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
-    //     customer = new Customer(cust);
-    //     if (accInfo[3].equals("")) {    //checks to see if interest rate is empty
-    //       ChequingAccount cAcc = new ChequingAccount(cust, Double.parseDouble(accInfo[2]), Double.parseDouble(accInfo[5]));
-    //       cAcc.setOverdraftAmount(Double.parseDouble(accInfo[4]));
-    //     } else {
-    //       savings = new SavingsAccount(cust, Double.parseDouble(accInfo[2]));
-    //       savings.setAnnualInterestRate(Double.parseDouble(accInfo[3]));
-    //     }
-    //
-    //   } catch (FileNotFoundException e) {
-    //           System.out.println("File could not be found. ");
-    //           System.err.println("FileNotFoundException: " + e.getMessage());
-    //   } catch (IOException e) {
-    //           System.out.println("Problem with input/output. ");
-    //           System.err.println("IOException: " + e.getMessage());
-    //   }
-    // } else {
+      //   while ((line = inputFile.readLine()) != null) {
+      //     for (int i = 0; i < accInfo.length; i++) {
+      //       accInfo[i] = line;
+      //     }
+      //   }
+      //   inputFile.close();
+      //   Customer cust = new Customer(accInfo[0], Integer.parseInt(accInfo[1]));  //new customer with name and id
+      //   customer = new Customer(cust);
+      //   if (accInfo[3].equals("")) {    //checks to see if interest rate is empty
+      //     ChequingAccount cAcc = new ChequingAccount(cust, Double.parseDouble(accInfo[2]), Double.parseDouble(accInfo[5]));
+      //     cAcc.setOverdraftAmount(Double.parseDouble(accInfo[4]));
+      //   } else {
+      //     savings = new SavingsAccount(cust, Double.parseDouble(accInfo[2]));
+      //     savings.setAnnualInterestRate(Double.parseDouble(accInfo[3]));
+      //   }
+      //
+      // } catch (FileNotFoundException e) {
+      //         System.out.println("File could not be found. ");
+      //         System.err.println("FileNotFoundException: " + e.getMessage());
+      // } catch (IOException e) {
+      //         System.out.println("Problem with input/output. ");
+      //         System.err.println("IOException: " + e.getMessage());
+      // }
+    } else {
 
 
       System.out.println("Create a savings account (S) or chequing account (C): ");
@@ -99,7 +105,7 @@ public class BankApplication extends Application {
         c.setOverdraftAmount(overAmt);
       }
 
-    //}
+    }
     NumberFormat currency = NumberFormat.getCurrencyInstance();       //Currency formatter used to format doubles
     VBox vbox = new VBox();                                           //Create new empty vertical box panel
     Label customerNameLabel = new Label("Customer name: " + customer.getName());                  //Create new label for customer name
