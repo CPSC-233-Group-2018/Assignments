@@ -39,7 +39,6 @@ public class BankApplication extends Application {
     if (acc.exists()) {
       BufferedReader inputFile = null;
     try {
-
       inputFile = new BufferedReader(new FileReader(acc));
     }
     catch (Exception e){
@@ -47,13 +46,12 @@ public class BankApplication extends Application {
     }
         String line = inputFile.readLine();
         String[] accInfo = new String[6];     //new array to store information
-    //     //0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
+        //0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
         int count = 0;
          while (((line = inputFile.readLine()) != null) && (count <accInfo.length)){
              accInfo[count] = line;
              System.out.println("Iteration Number:" + count + Arrays.toString(accInfo));
              count+=1;
-
          }
          System.out.println(Arrays.toString(accInfo));
          inputFile.close();
@@ -69,13 +67,11 @@ public class BankApplication extends Application {
           isSavings = true;
         }
 
-
       }catch (Exception e) {
             System.out.println("Error in lines 58-65");
             System.err.println("Exception: " + e.getMessage());
-    }
-    }else {
-
+      }
+    }else { //create a savings or chequing account
 
       System.out.println("Create a savings account (S) or chequing account (C): ");
       String choice = input.nextLine().toUpperCase();
@@ -85,7 +81,7 @@ public class BankApplication extends Application {
       int id = random.nextInt(9999 - 1000 + 1) + 1000;
       Customer createC = new Customer(name, id);
       customer = new Customer(createC);
-      if (choice.equals("S")) {
+      if (choice.equals("S")) { //creating a savings account
         System.out.println("Enter initial balance: ");
         input = new Scanner(System.in);
         double balS = input.nextDouble();
@@ -94,7 +90,7 @@ public class BankApplication extends Application {
         double rate = input.nextDouble();
         savings = new SavingsAccount(createC, balS);
         savings.setAnnualInterestRate(rate);
-      } else if (choice.equals("C")) {
+      } else if (choice.equals("C")) { //creating a chequing account
         System.out.println("Enter initial balance: ");
         input = new Scanner(System.in);
         double balC = input.nextDouble();
@@ -154,12 +150,13 @@ public class BankApplication extends Application {
           */
         @Override
         public void handle(ActionEvent event) {
-          try {             //Try to parse a double from the text obtained from the deposit text field
+          //doing checks with the deposit field first
+          try {    //Try to parse a double from the text obtained from the deposit text field
 
             double depositAmt = Double.parseDouble(depositTextField.getText());
             if (depositAmt <0){
-            errorMessages.setText("\nInvalid deposit please try again with a number greater than 0");
-          }
+              errorMessages.setText("~Invalid deposit please try again with a number greater than 0");
+            }
             if (depositAmt >= 0 && Double.isInfinite(depositAmt) == false && (isSavings == false)) {    //Check if the double parsed is positive and is not infinity
               chequing.deposit(depositAmt);          //Call the deposit method from the chequing object with depositAmt
             }
@@ -168,34 +165,54 @@ public class BankApplication extends Application {
             }
             depositTextField.setText("Amt to deposit");         //Reset the deposit text field with initial text
             if (isSavings == true){
-                balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));  //Update the balance
+              balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));  //Update the balance
             }
             if (isSavings == false){
-            balanceLabel.setText("Current balance: " + currency.format(chequing.getBalance()));  //Update the balance
-          }
+              balanceLabel.setText("Current balance: " + currency.format(chequing.getBalance()));  //Update the balance
+            }
           } catch (NumberFormatException e) {       //Catch a NumberFormatException
+            errorMessages.setText("~Not a valid input! Must be numbers.");
             depositTextField.setText("Amt to deposit");         //Reset the deposit text field with initial text
             System.out.println("Error with number format. ");   //Print to user that number format is incorrect
             System.err.println("NumberFormatException: " + e.getMessage());     //Print error message
-          } try {           //Try to parse a double from the text obtained from the withdraw text field
+          }
+
+          //working on the withdrawal field now
+          try {     //Try to parse a double from the text obtained from the withdraw text field
             double withdrawAmt = Double.parseDouble(withdrawTextField.getText());
             if (withdrawAmt <0){
-            errorMessages.setText("\nInvalid withdrawal please try again with a number greater than 0");
-          }
+            errorMessages.setText("~Invalid withdrawal please try again with a number greater than 0");
+            }
             if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false && (isSavings == false)) {  //Check if the double parsed is positive and is not infinity
-              chequing.withdraw(withdrawAmt);        //Call the withdraw method from the chequing object with withdrawAmt
+              System.out.println("balance:"+chequing.getBalance());
+              if ((chequing.getBalance() - withdrawAmt) < -1*chequing.getOverdraftAmount()) {  //check if withdrawing too much
+                errorMessages.setText("~You don't have enough to withdraw that amount!");
+              } else {
+                chequing.withdraw(withdrawAmt);        //Call the withdraw method from the chequing object with withdrawAmt
+              }
             }
+
+            //checking for valid inputs if it's a savings account for withdraws
             if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false && (isSavings == true)) {  //Check if the double parsed is positive and is not infinity
-              savings.withdraw(withdrawAmt);        //Call the withdraw method from the chequing object with withdrawAmt
+              if ((savings.getBalance() - withdrawAmt) < 0) {  //check if withdrawing too much
+                errorMessages.setText("~You don't have enough to withdraw that amount!");
+              } else {
+                savings.withdraw(withdrawAmt);        //Call the withdraw method from the savings object with withdrawAmt
+              }
             }
-            withdrawTextField.setText("Amt to withdraw");       //Reset the withdraw text field with initial text
+
+            //after execution of withdraw and deposit, reset the GUI's display
+            withdrawTextField.setText("Amt to withdraw");   //Reset the withdraw text field with initial text
+            errorMessages.setText("");                      //Also reseting the error message field
             if (isSavings==false){
-            balanceLabel.setText("Current balance: " + currency.format(chequing.getBalance()));  //Update the balance
-          }
-          if (isSavings==true){
-          balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));  //Update the balance
-        }
+              balanceLabel.setText("Current balance: " + currency.format(chequing.getBalance()));  //Update the balance
+            }
+            if (isSavings==true){
+              balanceLabel.setText("Current balance: " + currency.format(savings.getBalance()));  //Update the balance
+            }
+
           } catch (NumberFormatException e) {       //Catch a NumberFormatException
+            errorMessages.setText("~Not a valid input! Must be numbers.");
             withdrawTextField.setText("Amt to withdraw");       //Reset the withdraw text field with initial text
             System.out.println("Error with number format. ");   //Print to user that number format is incorrect
             System.err.println("NumberFormatException: " + e.getMessage());     //Print error message
@@ -208,7 +225,7 @@ public class BankApplication extends Application {
     primaryStage.setScene(scene);                   //Set the stage to the scene
     primaryStage.show();                            //Show the stage
 
-//0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
+    //0: Name, 1: ID, 2: Balance, 3: Interest Rate, 4: Overdraft Amount, 5: Overdraft Fee
     primaryStage.setOnCloseRequest(a -> {
       System.out.println("Saving ...");
       BufferedWriter theWriter = null;
