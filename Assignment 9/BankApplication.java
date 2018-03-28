@@ -114,6 +114,7 @@ public class BankApplication extends Application {
     Label customerNameLabel = new Label("Customer name: " + customer.getName());                  //Create new label for customer name
     Label customerIDLabel = new Label("Account ID: " + customer.getID());                         //Create new label for customer id
     Label balanceLabel;
+    Label errorMessages = new Label("\n");
     if (isSavings == true){
       balanceLabel= new Label("Current balance: " + currency.format(savings.getBalance()));  //Create new label for current balance
     }
@@ -123,6 +124,9 @@ public class BankApplication extends Application {
     //Add customer name and id labels to vertical box
     vbox.getChildren().add(customerNameLabel);
     vbox.getChildren().add(customerIDLabel);
+
+    //adds the error message box to the verticalbox
+    vbox.getChildren().add(errorMessages);
 
     HBox hbox = new HBox();                                         //Create new empty horizontal box panel
     TextField depositTextField = new TextField("Amt to deposit");   //Create a text field showing initial text to user
@@ -151,7 +155,11 @@ public class BankApplication extends Application {
         @Override
         public void handle(ActionEvent event) {
           try {             //Try to parse a double from the text obtained from the deposit text field
+
             double depositAmt = Double.parseDouble(depositTextField.getText());
+            if (depositAmt <0){
+            errorMessages.setText("\nInvalid deposit please try again with a number greater than 0");
+          }
             if (depositAmt >= 0 && Double.isInfinite(depositAmt) == false && (isSavings == false)) {    //Check if the double parsed is positive and is not infinity
               chequing.deposit(depositAmt);          //Call the deposit method from the chequing object with depositAmt
             }
@@ -171,6 +179,9 @@ public class BankApplication extends Application {
             System.err.println("NumberFormatException: " + e.getMessage());     //Print error message
           } try {           //Try to parse a double from the text obtained from the withdraw text field
             double withdrawAmt = Double.parseDouble(withdrawTextField.getText());
+            if (withdrawAmt <0){
+            errorMessages.setText("\nInvalid withdrawal please try again with a number greater than 0");
+          }
             if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false && (isSavings == false)) {  //Check if the double parsed is positive and is not infinity
               chequing.withdraw(withdrawAmt);        //Call the withdraw method from the chequing object with withdrawAmt
             }
