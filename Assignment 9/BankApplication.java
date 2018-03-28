@@ -1,9 +1,10 @@
 /**
  * Tutorial 6 Team 3:
- * Seth Campbell, Kieran Woods, Rulan Lu, William Chan Jan 26, 2018
- * -team assignment 5, Feb.26,2018-
+ * Seth Campbell, Kieran Woods, Rulan Lu, William Chan
+ * -team assignment 10, Mar.27,2018-
  *  	A BankApplication class that creates a GUI for a user to withdraw and deposit
- *    and shows the balance to the user.
+ *    and shows the balance to the user. Now updated with exception handling, error
+ *    messages and file saving/loading.
  */
 
 //Import javafx libraries
@@ -23,7 +24,9 @@ public class BankApplication extends Application {
   //Create and initialize instance objects Customer and SavgingsAccount
   private Customer customer = new Customer("Charles Brown", 123456);
   private SavingsAccount savings = new SavingsAccount(customer, 150.00);
+  //private SavingsAccount savings = new SavingsAccount();
   private ChequingAccount chequing = new ChequingAccount(customer, 2000.00, 10);
+  //private ChequingAccount chequing = new ChequingAccount();
   private Boolean isSavings = false;
 
   /**
@@ -90,6 +93,7 @@ public class BankApplication extends Application {
         double rate = input.nextDouble();
         savings = new SavingsAccount(createC, balS);
         savings.setAnnualInterestRate(rate);
+        isSavings = true;
       } else if (choice.equals("C")) { //creating a chequing account
         System.out.println("Enter initial balance: ");
         input = new Scanner(System.in);
@@ -111,15 +115,25 @@ public class BankApplication extends Application {
     Label customerIDLabel = new Label("Account ID: " + customer.getID());                         //Create new label for customer id
     Label balanceLabel;
     Label errorMessages = new Label("\n");
-    if (isSavings == true){
-      balanceLabel= new Label("Current balance: " + currency.format(savings.getBalance()));  //Create new label for current balance
-    }
-    else{ balanceLabel= new Label("Current balance: " + currency.format(chequing.getBalance()));  //Create new label for current balance
-  }
+    Label customerTypeLabel = new Label(""); //blank to start off
 
-    //Add customer name and id labels to vertical box
+    if (isSavings == true) {    //creating an account label based on its type
+      customerTypeLabel.setText("Account type: " + "Savings");
+    } else {
+      customerTypeLabel.setText("Account type: " + "Chequing");
+    }
+
+    if (isSavings == true){     //creating the balance label based on account's balance
+      balanceLabel= new Label("Current balance: " + currency.format(savings.getBalance()));  //Create new label for current balance
+      System.out.println("balance of savings for testing: "+savings.getBalance());
+    } else {
+      balanceLabel= new Label("Current balance: " + currency.format(chequing.getBalance()));  //Create new label for current balance
+    }
+
+    //Add customer name, id labels and type to vertical box
     vbox.getChildren().add(customerNameLabel);
     vbox.getChildren().add(customerIDLabel);
+    vbox.getChildren().add(customerTypeLabel);
 
     //adds the error message box to the verticalbox
     vbox.getChildren().add(errorMessages);
@@ -150,6 +164,8 @@ public class BankApplication extends Application {
           */
         @Override
         public void handle(ActionEvent event) {
+          errorMessages.setText("");   //resetting the error message field
+
           //doing checks with the deposit field first
           try {    //Try to parse a double from the text obtained from the deposit text field
 
@@ -184,12 +200,12 @@ public class BankApplication extends Application {
             errorMessages.setText("~Invalid withdrawal please try again with a number greater than 0");
             }
             if (withdrawAmt >= 0 && Double.isInfinite(withdrawAmt) == false && (isSavings == false)) {  //Check if the double parsed is positive and is not infinity
-              System.out.println("balance:"+chequing.getBalance());
               if ((chequing.getBalance() - withdrawAmt) < -1*chequing.getOverdraftAmount()) {  //check if withdrawing too much
                 errorMessages.setText("~You don't have enough to withdraw that amount!");
               } else {
                 chequing.withdraw(withdrawAmt);        //Call the withdraw method from the chequing object with withdrawAmt
               }
+              System.out.println("balance:"+chequing.getBalance());
             }
 
             //checking for valid inputs if it's a savings account for withdraws
@@ -199,11 +215,12 @@ public class BankApplication extends Application {
               } else {
                 savings.withdraw(withdrawAmt);        //Call the withdraw method from the savings object with withdrawAmt
               }
+              System.out.println("balance:"+savings.getBalance());
             }
 
             //after execution of withdraw and deposit, reset the GUI's display
             withdrawTextField.setText("Amt to withdraw");   //Reset the withdraw text field with initial text
-            errorMessages.setText("");                      //Also reseting the error message field
+
             if (isSavings==false){
               balanceLabel.setText("Current balance: " + currency.format(chequing.getBalance()));  //Update the balance
             }
