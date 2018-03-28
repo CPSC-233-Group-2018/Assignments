@@ -99,8 +99,8 @@ public class BankApplication extends Application {
         System.out.println("Enter overdraft fee: ");
         input = new Scanner(System.in);
         double overFee = input.nextDouble();
-        ChequingAccount c = new ChequingAccount(createC, balC, overFee);
-        c.setOverdraftAmount(overAmt);
+        chequing = new ChequingAccount(createC, balC, overFee);
+        chequing.setOverdraftAmount(overAmt);
       }
 
     }
@@ -195,7 +195,7 @@ System.out.println("Exception thrown in line 188");
 }
 
 try{
- theWriter.write("\n"+Double.toString(savings.getBalance()));
+ theWriter.write("\n"+Double.toString(chequing.getBalance()));
 } catch(Exception e){
 System.out.println("Exception thrown in line 194");
 }
