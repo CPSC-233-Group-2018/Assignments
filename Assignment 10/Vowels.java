@@ -19,7 +19,7 @@ public class Vowels {
 
 		//Terminating Conditon:
 		//	The base case or terminating condition will always be reached because the
-		//	recursive call is always truncating the string by one, therefore always decreasing
+		//	recursive call is always truncating the string by one, so it will always decreasing
 		//	till it reaches 0 length, at which it terminates.
 		if (str.length() == 0) { //base case
 			return 0;
@@ -39,7 +39,7 @@ public class Vowels {
 			//	The recursive call is using its own method to solve smaller parts of the problem.
 			//	Each recursive call to a subsection computes a correct vowel count. Then, through
 			//	the addition operator in the return statement, we are able to sum all these results
-			//	for the final total.
+			//	and return the final total.
 		}
 	}
 
